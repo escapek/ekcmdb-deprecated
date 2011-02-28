@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ekcmdb.iml" filepath="$PROJECT_DIR$/ekcmdb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/model/model.iml" filepath="$PROJECT_DIR$/model/model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/model-neo4j/model-neo4j.iml" filepath="$PROJECT_DIR$/model-neo4j/model-neo4j.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tools-neo4j/tools-neo4j.iml" filepath="$PROJECT_DIR$/tools-neo4j/tools-neo4j.iml" />
+    </modules>
+  </component>
+</project>
+
