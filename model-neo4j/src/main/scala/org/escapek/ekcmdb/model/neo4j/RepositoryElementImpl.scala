@@ -1,10 +1,10 @@
 package org.escapek.ekcmdb.model.neo4j
 
-import org.escapek.ekcmdb.model.RepositoryElement
 import org.neo4j.graphdb.{Relationship, Node, Direction}
 import org.escapek.ekcmdb.tools.neo4j.Neo4JWrapper
 import scala.collection.JavaConversions._
 import collection.immutable.HashMap
+import org.escapek.ekcmdb.model.{MetaData, RepositoryElement}
 
 abstract class RepositoryElementImpl(val node:Node) extends RepositoryElement with Neo4JWrapper
 {
@@ -22,9 +22,11 @@ abstract class RepositoryElementImpl(val node:Node) extends RepositoryElement wi
 	{
     val iterator =
       node.getRelationships(RepositoryRelationships.Rel_RepositoryElementToMedaData,Direction.OUTGOING).iterator
-    //iterator.map( r => (r.getProperty(RepositoryRelationships.RelProp_RepositoryElementToMedaData_name), r.getEndNode()))
-    iterator.map( r => (r(RepositoryRelationships.RelProp_RepositoryElementToMedaData_name), new MetaDataImpl(r.getEndNode())))
+    Map.empty[String, MetaData] ++ iterator.map(
+      r => (r(RepositoryRelationships.RelProp_RepositoryElementToMedaData_name).asInstanceOf[String],
+        new MetaDataImpl(r.getEndNode())))
 	}
+
 }
 
 object RepositoryElementImpl

@@ -10,4 +10,5 @@ class SchemaImpl(override val node: Node) extends ModelElementImpl(node) with Sc
 		node.getRelationships
 	}
 */
+  def content = null
 }

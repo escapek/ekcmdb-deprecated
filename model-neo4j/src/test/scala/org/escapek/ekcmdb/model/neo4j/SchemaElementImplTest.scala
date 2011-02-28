@@ -1,6 +1,5 @@
 package org.escapek.ekcmdb.model.neo4j
 
-import org.escapek.ekcmdb.model.neo4j.SchemaImpl
 import org.junit.Test
 import org.neo4j.kernel.EmbeddedGraphDatabase
 import org.neo4j.graphdb.GraphDatabaseService

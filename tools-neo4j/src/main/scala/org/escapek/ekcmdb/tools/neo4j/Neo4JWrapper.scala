@@ -62,4 +62,5 @@ trait Neo4JWrapper {
 		{
 			def isReturnableNode(traversalPosition: TraversalPosition) = e(traversalPosition)
 		}
+
 	}
