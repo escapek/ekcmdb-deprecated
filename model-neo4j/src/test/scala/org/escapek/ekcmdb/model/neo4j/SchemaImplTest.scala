@@ -9,10 +9,10 @@ import org.scalatest.FunSuite
 @RunWith(classOf[JUnitRunner])
 class SchemaImplTest extends FunSuite {
 
-  val graphDB : GraphDatabaseService = new EmbeddedGraphDatabase( "target/test/graphdb" )
-
 	test("Managed element creation")
 	{
+    val graphDB : GraphDatabaseService = new EmbeddedGraphDatabase( "target/test/graphdb" )
+
 		val tx = graphDB.beginTx
 		
 		val firstNode = graphDB.createNode
@@ -22,6 +22,6 @@ class SchemaImplTest extends FunSuite {
 		tx.success
 		tx.finish
 		println (mElem.id)
-		graphDB.shutdown();
+		graphDB.shutdown()
 	}
 }
