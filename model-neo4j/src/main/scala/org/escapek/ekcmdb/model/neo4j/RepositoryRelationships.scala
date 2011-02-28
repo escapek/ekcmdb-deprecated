@@ -6,4 +6,6 @@ object RepositoryRelationships
 {
   val Rel_RepositoryElementToMedaData = withName("REPOSITORYELEMENT_TO_METADATA")
   val RelProp_RepositoryElementToMedaData_name = "name"
+
+  val Rel_ClassBelongsToSchema = withName("CLASS_BELONGS_TO_SCHEMA")
 }

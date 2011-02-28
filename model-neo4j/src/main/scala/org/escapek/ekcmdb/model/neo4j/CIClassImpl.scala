@@ -9,11 +9,11 @@ class CIClassImpl(override val node:Node) extends ModelElementImpl(node) with CI
 {
 	def schema : Schema = {
 		new SchemaImpl(
-				node.getSingleRelationship(
-						DynamicRelationshipType.withName(CIClassImpl.Rel_ClassBelongsToSchema), Direction.OUTGOING).getEndNode)
+				node.getSingleRelationship(RepositoryRelationships.Rel_ClassBelongsToSchema, Direction.OUTGOING).getEndNode)
 	}
 
-	def isAbstract : Boolean = false
+	// TODO : Implement methods
+  def isAbstract : Boolean = false
 	def isFinal : Boolean = false
 	def baseClass : CIClass = null
 	def properties : Set[Property] = Set[Property]()
@@ -21,5 +21,4 @@ class CIClassImpl(override val node:Node) extends ModelElementImpl(node) with CI
 
 object CIClassImpl
 {
-	val Rel_ClassBelongsToSchema = "CLASS_BELONGS_TO_SCHEMA";
 }
