@@ -5,6 +5,8 @@ import org.escapek.ekcmdb.model.CIClass
 import org.escapek.ekcmdb.model.Schema
 import org.neo4j.graphdb._
 import org.escapek.ekcmdb.tools.neo4j.Neo4JWrapper
+import scala.collection.JavaConversions._
+
 
 class CIClassImpl(override val node:Node) extends ModelElementImpl(node) with CIClass with Neo4JWrapper
 {
@@ -21,10 +23,10 @@ class CIClassImpl(override val node:Node) extends ModelElementImpl(node) with CI
     node(CIClassImpl.Prop_isFinal).asInstanceOf[Boolean]
   }
 
-	def baseClass : CIClass = {
+	def baseClass : Option[CIClass] = {
     if(node.hasRelationship(RepositoryRelationships.Rel_ClassHasParentClass, Direction.OUTGOING))
-      new CIClassImpl(
-        node.getSingleRelationship(RepositoryRelationships.Rel_ClassHasParentClass, Direction.OUTGOING).getEndNode)
+      Some(new CIClassImpl(
+        node.getSingleRelationship(RepositoryRelationships.Rel_ClassHasParentClass, Direction.OUTGOING).getEndNode))
     else
       None
   }

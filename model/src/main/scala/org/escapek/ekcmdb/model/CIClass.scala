@@ -5,6 +5,6 @@ trait CIClass extends ModelElement
 	def schema : Schema
 	def isAbstract : Boolean
 	def isFinal : Boolean
-	def baseClass : CIClass
+	def baseClass : Option[CIClass]
 	def properties : Set[Property]
 }
