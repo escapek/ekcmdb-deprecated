@@ -5,5 +5,5 @@ trait Property extends ModelElement {
 	def defaultValue : Unit
 	def isArray : Boolean
 	def typeParameter
-	def overrides : Property
+	def overrides : Option[Property]
 }

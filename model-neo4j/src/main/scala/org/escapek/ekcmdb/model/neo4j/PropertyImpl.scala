@@ -15,8 +15,8 @@ class PropertyImpl(override val node:Node) extends ModelElementImpl(node) with P
 {
   def overrides = {
     if(node.hasRelationship(RepositoryRelationships.Rel_PropertyOverrides, Direction.OUTGOING))
-      new PropertyImpl(
-        node.getSingleRelationship(RepositoryRelationships.Rel_PropertyOverrides, Direction.OUTGOING).getEndNode)
+      Some(new PropertyImpl(
+        node.getSingleRelationship(RepositoryRelationships.Rel_PropertyOverrides, Direction.OUTGOING).getEndNode))
     else
       None
   }
