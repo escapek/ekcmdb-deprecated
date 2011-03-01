@@ -7,8 +7,7 @@ import org.scalatest.junit.JUnitRunner
 import org.scalatest.FunSuite
 
 @RunWith(classOf[JUnitRunner])
-class SchemaImplTest extends FunSuite {
-
+class SchemaImplSpec extends FunSuite {
 	test("Managed element creation")
 	{
     val graphDB : GraphDatabaseService = new EmbeddedGraphDatabase( "target/test/graphdb" )

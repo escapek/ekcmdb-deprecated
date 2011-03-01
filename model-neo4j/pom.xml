@@ -37,6 +37,7 @@
                 <configuration>
                     <includes>
                         <include>**/*Test.class</include>
+                        <include>**/*Spec.class</include>
                     </includes>
                 </configuration>
             </plugin>
