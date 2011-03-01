@@ -11,10 +11,12 @@ class MetaDataImpl(val node:Node) extends MetaData with Neo4JWrapper
     incRel(RepositoryRelationships.RelProp_RepositoryElementToMedaData_name).asInstanceOf[String]
   }
 
-  def value = null
+  def value = {
+    node.getProperty(MetaDataImpl.Prop_value).asInstanceOf[String]
+  }
 }
 
 object MetaDataImpl
 {
-  val Key_value = "value"
+  val Prop_value = "value"
 }
