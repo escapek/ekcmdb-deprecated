@@ -4,21 +4,40 @@ import org.escapek.ekcmdb.model.Property
 import org.escapek.ekcmdb.model.CIClass
 import org.escapek.ekcmdb.model.Schema
 import org.neo4j.graphdb._
+import org.escapek.ekcmdb.tools.neo4j.Neo4JWrapper
 
-class CIClassImpl(override val node:Node) extends ModelElementImpl(node) with CIClass
+class CIClassImpl(override val node:Node) extends ModelElementImpl(node) with CIClass with Neo4JWrapper
 {
 	def schema : Schema = {
 		new SchemaImpl(
 				node.getSingleRelationship(RepositoryRelationships.Rel_ClassBelongsToSchema, Direction.OUTGOING).getEndNode)
 	}
 
-	// TODO : Implement methods
-  def isAbstract : Boolean = false
-	def isFinal : Boolean = false
-	def baseClass : CIClass = null
-	def properties : Set[Property] = Set[Property]()
+  def isAbstract : Boolean = {
+    node(CIClassImpl.Prop_isAbstract).asInstanceOf[Boolean]
+  }
+
+	def isFinal : Boolean = {
+    node(CIClassImpl.Prop_isFinal).asInstanceOf[Boolean]
+  }
+
+	def baseClass : CIClass = {
+    if(node.hasRelationship(RepositoryRelationships.Rel_ClassHasParentClass, Direction.OUTGOING))
+      new CIClassImpl(
+        node.getSingleRelationship(RepositoryRelationships.Rel_ClassHasParentClass, Direction.OUTGOING).getEndNode)
+    else
+      None
+  }
+
+	def properties : Set[Property] = {
+    val iterator =
+      node.getRelationships(RepositoryRelationships.Rel_ClassHasProperties,Direction.OUTGOING).iterator
+    Set.empty[Property] ++ iterator.map( c => new PropertyImpl(c.getEndNode()))
+  }
 }
 
 object CIClassImpl
 {
+  val Prop_isAbstract = "isAbstract"
+  val Prop_isFinal = "isFinal"
 }

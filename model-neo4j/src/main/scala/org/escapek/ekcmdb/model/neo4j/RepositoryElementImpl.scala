@@ -22,9 +22,10 @@ abstract class RepositoryElementImpl(val node:Node) extends RepositoryElement wi
 	{
     val iterator =
       node.getRelationships(RepositoryRelationships.Rel_RepositoryElementToMedaData,Direction.OUTGOING).iterator
-    Map.empty[String, MetaData] ++ iterator.map(
-      r => (r(RepositoryRelationships.RelProp_RepositoryElementToMedaData_name).asInstanceOf[String],
-        new MetaDataImpl(r.getEndNode())))
+    Map.empty[String, MetaData] ++
+      iterator.map(
+        r => (r(RepositoryRelationships.RelProp_RepositoryElementToMedaData_name).asInstanceOf[String],
+          new MetaDataImpl(r.getEndNode())))
 	}
 
 }
