@@ -10,4 +10,6 @@ object RepositoryRelationships
   val Rel_ClassBelongsToSchema = withName("CLASS_BELONGS_TO_SCHEMA")
   val Rel_ClassHasProperties = withName("CLASS_HAS_PROPERTIES")
   val Rel_ClassHasParentClass = withName("CLASS_HAS_PARENTCLASS")
+  val Rel_PropertyOverrides = withName("PROPERTY_OVERRIDES")
+
 }
