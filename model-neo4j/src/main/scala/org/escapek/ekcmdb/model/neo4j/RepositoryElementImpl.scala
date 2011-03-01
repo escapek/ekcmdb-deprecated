@@ -19,7 +19,7 @@ abstract class RepositoryElementImpl(val node:Node) extends RepositoryElement wi
   }
 
   def version_=(v:String) {
-    node.setProperty(ModelElementImpl.Prop_version , v)
+    node.setProperty(RepositoryElementImpl.Prop_version , v)
   }
 
 	override def metaData =

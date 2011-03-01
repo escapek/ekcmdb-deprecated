@@ -3,6 +3,9 @@ package org.escapek.ekcmdb.model.neo4j
 import org.neo4j.kernel.EmbeddedGraphDatabase
 import org.scalatest.WordSpec
 import org.neo4j.graphdb.{GraphDatabaseService, Node}
+import org.scalatest.matchers.MustMatchers
+import org.scalatest.junit.JUnitRunner
+import org.junit.runner.RunWith
 
 /**
  * Created by IntelliJ IDEA.
@@ -10,7 +13,8 @@ import org.neo4j.graphdb.{GraphDatabaseService, Node}
  * Date: 01/03/11
  * Time: 17:03
  */
-class RepositoryElementSpec extends WordSpec {
+@RunWith(classOf[JUnitRunner])
+class RepositoryElementSpec extends WordSpec with MustMatchers {
   class TestRepositoryElement(override val node:Node) extends RepositoryElementImpl(node)
 
   val graphDB : GraphDatabaseService = new EmbeddedGraphDatabase( "target/test/graphdb" )
@@ -22,7 +26,7 @@ class RepositoryElementSpec extends WordSpec {
       val mElem = new TestRepositoryElement(node)
   		tx.success
 	  	tx.finish
-      mElem.id must not be null
+      assert(mElem.id !=0)
     }
     
     "have an empty metadata list" in {
@@ -31,7 +35,7 @@ class RepositoryElementSpec extends WordSpec {
       val mElem = new TestRepositoryElement(node)
       tx.success
       tx.finish
-      mElem.metaData must be empty
+      assert(mElem.metaData == Map.empty)
 
     }
   }
