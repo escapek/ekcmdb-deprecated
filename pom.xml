@@ -22,6 +22,14 @@
 			<name>Scala-tools Maven2 Repository</name>
 			<url>http://scala-tools.org/repo-releases</url>
 		</repository>
+        <repository>
+            <id>neo.org</id>
+            <name>Neo4J Maven2 Repository</name>
+            <url>http://m2.neo4j.org/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
 	</repositories>
 
 	<pluginRepositories>
