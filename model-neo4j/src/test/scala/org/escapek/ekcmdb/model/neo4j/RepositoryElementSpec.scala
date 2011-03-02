@@ -1,11 +1,11 @@
 package org.escapek.ekcmdb.model.neo4j
 
 import org.neo4j.kernel.EmbeddedGraphDatabase
-import org.scalatest.WordSpec
 import org.neo4j.graphdb.{GraphDatabaseService, Node}
 import org.scalatest.matchers.MustMatchers
-import org.scalatest.junit.JUnitRunner
 import org.junit.runner.RunWith
+import org.scalatest.junit.JUnitRunner
+import org.scalatest.{BeforeAndAfterAll, WordSpec}
 
 /**
  * Created by IntelliJ IDEA.
@@ -14,10 +14,19 @@ import org.junit.runner.RunWith
  * Time: 17:03
  */
 @RunWith(classOf[JUnitRunner])
-class RepositoryElementSpec extends WordSpec with MustMatchers {
+class RepositoryElementSpec extends WordSpec with MustMatchers with BeforeAndAfterAll {
+  var graphDB : GraphDatabaseService = _
   class TestRepositoryElement(override val node:Node) extends RepositoryElementImpl(node)
 
-  val graphDB : GraphDatabaseService = new EmbeddedGraphDatabase( "target/test/graphdb" )
+  override def beforeAll(configMap: Map[String, Any])
+  {
+    graphDB = new EmbeddedGraphDatabase( "target/test/graphdb" )
+  }
+
+  override def afterAll(configMap: Map[String, Any])
+  {
+    graphDB.shutdown()
+  }
 
   "A new repository element" must {
     "have a Id initialized to a value" in {
