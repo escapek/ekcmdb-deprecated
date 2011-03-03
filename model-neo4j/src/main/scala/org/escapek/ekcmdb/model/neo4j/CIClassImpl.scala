@@ -8,8 +8,10 @@ import org.escapek.ekcmdb.tools.neo4j.Neo4JWrapper
 import scala.collection.JavaConversions._
 
 
-class CIClassImpl(override val node:Node) extends ModelElementImpl(node) with CIClass with Neo4JWrapper
+class CIClassImpl(override val node:Node) extends ModelNodeImpl(node) with CIClass with Neo4JWrapper
 {
+  def className = CIClassImpl.className
+
 	def schema : Schema = {
 		new SchemaImpl(
 				node.getSingleRelationship(RepositoryRelationships.Rel_ClassBelongsToSchema, Direction.OUTGOING).getEndNode)
@@ -40,6 +42,7 @@ class CIClassImpl(override val node:Node) extends ModelElementImpl(node) with CI
 
 object CIClassImpl
 {
-  val Prop_isAbstract = "isAbstract"
-  val Prop_isFinal = "isFinal"
+  val className = "CIClass"
+  val Prop_isAbstract = className + "." + "isAbstract"
+  val Prop_isFinal = className + "." + "isFinal"
 }

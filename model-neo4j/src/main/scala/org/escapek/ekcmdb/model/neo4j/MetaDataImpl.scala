@@ -4,7 +4,7 @@ import org.escapek.ekcmdb.model.MetaData
 import org.neo4j.graphdb.{Relationship, Direction, Node}
 import org.escapek.ekcmdb.tools.neo4j.Neo4JWrapper
 
-class MetaDataImpl(val node:Node) extends MetaData with Neo4JWrapper
+class MetaDataImpl(override val node:Node) extends Neo4JNode(node) with MetaData
 {
   def name = {
     val incRel = node.getSingleRelationship(RepositoryRelationships.Rel_RepositoryElementToMedaData,Direction.INCOMING)
@@ -14,9 +14,12 @@ class MetaDataImpl(val node:Node) extends MetaData with Neo4JWrapper
   def value = {
     node.getProperty(MetaDataImpl.Prop_value).asInstanceOf[String]
   }
+
+  def className = MetaDataImpl.className
 }
 
 object MetaDataImpl
 {
-  val Prop_value = "value"
+  val className = "MetaData"
+  val Prop_value = className + "." + "value"
 }

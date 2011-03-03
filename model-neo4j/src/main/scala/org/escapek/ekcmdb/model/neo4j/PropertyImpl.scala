@@ -11,8 +11,10 @@ import org.neo4j.graphdb.{Direction, Node}
  * Time: 15:20
  */
 
-class PropertyImpl(override val node:Node) extends ModelElementImpl(node) with Property with Neo4JWrapper
+class PropertyImpl(override val node:Node) extends ModelNodeImpl(node) with Property with Neo4JWrapper
 {
+  def className = PropertyImpl.className
+
   def overrides = {
     if(node.hasRelationship(RepositoryRelationships.Rel_PropertyOverrides, Direction.OUTGOING))
       Some(new PropertyImpl(
@@ -34,14 +36,15 @@ class PropertyImpl(override val node:Node) extends ModelElementImpl(node) with P
   }
 
   def isNullAccepted = {
-    node(PropertyImpl.Prop_isNullAccepter).asInstanceOf[Boolean]
+    node(PropertyImpl.Prop_isNullAccepted).asInstanceOf[Boolean]
   }
 }
 
 object PropertyImpl
 {
-  val Prop_typeParameter = "typeParameter"
-  val Prop_isArray = "isArray"
-  val Prop_defaultValue = "defaultValue"
-  val Prop_isNullAccepter = "isNullAccepted"
+  val className = "Property"
+  val Prop_typeParameter = className + "." + "typeParameter"
+  val Prop_isArray = className + "." + "isArray"
+  val Prop_defaultValue = className + "." + "defaultValue"
+  val Prop_isNullAccepted = className + "." + "isNullAccepted"
 }
