@@ -23,28 +23,50 @@ class PropertyImpl(override val node:Node) extends ModelNodeImpl(node) with Prop
       None
   }
 
-  def typeParameter = {
-    node(PropertyImpl.Prop_typeParameter).asInstanceOf[String]
-  }
-
-  def isArray = {
-    node(PropertyImpl.Prop_isArray).asInstanceOf[Boolean]
-  }
-
   def defaultValue = {
     node(PropertyImpl.Prop_defaultValue).asInstanceOf[String]
   }
 
-  def isNullAccepted = {
-    node(PropertyImpl.Prop_isNullAccepted).asInstanceOf[Boolean]
+  def defaultValue_=(value:String) = {
+    node.setProperty(PropertyImpl.Prop_defaultValue, value)
   }
+
+  def restrictions = {
+    node(PropertyImpl.Prop_restrictions).asInstanceOf[String]
+  }
+
+  def restrictions_=(value:String) = {
+    node.setProperty(PropertyImpl.Prop_restrictions, value)
+  }
+
+  def minCardinality = {
+    node(PropertyImpl.Prop_minCardinality).asInstanceOf[Int]
+  }
+
+  def minCardinality_=(card:Int) = {
+    node.setProperty(PropertyImpl.Prop_minCardinality, card)
+  }
+
+  def maxCardinality = {
+    node(PropertyImpl.Prop_maxCardinality).asInstanceOf[Int]
+  }
+
+  def maxCardinality_=(card:Int) = {
+    node.setProperty(PropertyImpl.Prop_maxCardinality, card)
+  }
+
+  //TODO : Implement
+  def referencedClass = null
+
+  //TODO : Implement
+  def propertyType = null
 }
 
 object PropertyImpl
 {
   val className = "Property"
-  val Prop_typeParameter = className + "." + "typeParameter"
-  val Prop_isArray = className + "." + "isArray"
   val Prop_defaultValue = className + "." + "defaultValue"
-  val Prop_isNullAccepted = className + "." + "isNullAccepted"
+  val Prop_restrictions = className + "." + "restrictions"
+  val Prop_minCardinality = className + "." + "minCardinality"
+  val Prop_maxCardinality = className + "." + "maxCardinality"
 }
