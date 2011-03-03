@@ -1,6 +1,6 @@
 package org.escapek.ekcmdb.model
 
-trait RepositoryElement
+trait EKNode
 {
 	def id : Long
 	def version : String

@@ -1,6 +1,6 @@
 package org.escapek.ekcmdb.model
 
-trait ModelElement extends RepositoryElement
+trait ModelNode extends EKNode
 {
 	def name : String
 	def displayName : String
