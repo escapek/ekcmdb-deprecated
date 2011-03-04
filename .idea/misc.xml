@@ -10,6 +10,7 @@
     <autodetection-disabled>
       <facet-type id="scala">
         <modules>
+          <module name="dao" />
           <module name="model-neo4j" />
         </modules>
       </facet-type>

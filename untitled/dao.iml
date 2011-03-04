@@ -3,8 +3,9 @@
   <component name="FacetManager">
     <facet type="scala" name="Scala">
       <configuration>
-        <option name="compilerLibraryLevel" value="Global" />
-        <option name="compilerLibraryName" value="scala-compiler-2.8.1" />
+        <option name="compilerLibraryLevel" value="Project" />
+        <option name="compilerLibraryName" value="Maven: org.scala-lang:scala-compiler-bundle:WrappedArray(2.8.1)" />
+        <option name="vmOptions" value="" />
       </configuration>
     </facet>
   </component>
@@ -20,6 +21,8 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="scala-library-2.8.1" level="application" />
+    <orderEntry type="module" module-name="model" />
+    <orderEntry type="library" name="Maven: org.scala-lang:scala-library:2.8.1" level="project" />
   </component>
 </module>
 
