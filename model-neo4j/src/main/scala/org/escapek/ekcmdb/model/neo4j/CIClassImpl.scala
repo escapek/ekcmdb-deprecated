@@ -21,8 +21,16 @@ class CIClassImpl(override val node:Node) extends ModelNodeImpl(node) with CICla
     node(CIClassImpl.Prop_isAbstract).asInstanceOf[Boolean]
   }
 
+  def isAbstract_=(b:Boolean) {
+    node.setProperty(CIClassImpl.Prop_isAbstract, b)
+  }
+
 	def isFinal : Boolean = {
     node(CIClassImpl.Prop_isFinal).asInstanceOf[Boolean]
+  }
+
+  def isFinal_=(b:Boolean) {
+    node.setProperty(CIClassImpl.Prop_isFinal, b)
   }
 
 	def baseClass : Option[CIClass] = {
@@ -32,6 +40,12 @@ class CIClassImpl(override val node:Node) extends ModelNodeImpl(node) with CICla
     else
       None
   }
+
+  // TODO : Tink about it : should the relation created inside the POJO or outside in the domain classes
+  /*
+  def baseClass_=(ciClass:CIClass) = {
+    node.createRelationshipTo(ciClass, RepositoryRelationships.Rel_ClassHasParentClass)
+  }*/
 
 	def properties : Set[Property] = {
     val iterator =
