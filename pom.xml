@@ -65,5 +65,6 @@
 		<module>model</module>
 		<module>model-neo4j</module>
 		<module>tools-neo4j</module>
+        <module>dao</module>
     </modules>
 </project>

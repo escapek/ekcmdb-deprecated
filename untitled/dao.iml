@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" version="4">
+  <component name="FacetManager">
+    <facet type="scala" name="Scala">
+      <configuration>
+        <option name="compilerLibraryLevel" value="Global" />
+        <option name="compilerLibraryName" value="scala-compiler-2.8.1" />
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="false">
+    <output url="file://$MODULE_DIR$/../dao/target/classes" />
+    <output-test url="file://$MODULE_DIR$/../dao/target/test-classes" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../dao">
+      <sourceFolder url="file://$MODULE_DIR$/../dao/src/main/scala" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../dao/src/test/scala" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/../dao/target" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="scala-library-2.8.1" level="application" />
+  </component>
+</module>
+
