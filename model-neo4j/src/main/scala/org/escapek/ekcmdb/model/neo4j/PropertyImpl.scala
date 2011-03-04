@@ -1,8 +1,8 @@
 package org.escapek.ekcmdb.model.neo4j
 
 import org.escapek.ekcmdb.tools.neo4j.Neo4JWrapper
-import org.escapek.ekcmdb.model.Property
 import org.neo4j.graphdb.{Direction, Node}
+import org.escapek.ekcmdb.model.{PropertyType, Property}
 
 /**
  * Created by IntelliJ IDEA.
@@ -11,7 +11,7 @@ import org.neo4j.graphdb.{Direction, Node}
  * Time: 15:20
  */
 
-class PropertyImpl(override val node:Node) extends ModelNodeImpl(node) with Property with Neo4JWrapper
+class PropertyImpl(override val node:Node) extends ModelNodeImpl(node) with Property
 {
   def className = PropertyImpl.className
 
@@ -39,27 +39,30 @@ class PropertyImpl(override val node:Node) extends ModelNodeImpl(node) with Prop
     node.setProperty(PropertyImpl.Prop_restrictions, value)
   }
 
-  def minCardinality = {
-    node(PropertyImpl.Prop_minCardinality).asInstanceOf[Int]
+  def cardinality = {
+    node(PropertyImpl.Prop_cardinality).asInstanceOf[String]
   }
 
-  def minCardinality_=(card:Int) = {
-    node.setProperty(PropertyImpl.Prop_minCardinality, card)
+  def cardinality_=(card:String) = {
+    node.setProperty(PropertyImpl.Prop_cardinality, card)
   }
 
-  def maxCardinality = {
-    node(PropertyImpl.Prop_maxCardinality).asInstanceOf[Int]
+  def referencedClass = {
+    if(node.hasRelationship(RepositoryRelationships.Rel_PropertyReferencesClass, Direction.OUTGOING))
+      Some(new CIClassImpl(
+        node.getSingleRelationship(RepositoryRelationships.Rel_PropertyReferencesClass, Direction.OUTGOING).getEndNode))
+    else
+      None
   }
 
-  def maxCardinality_=(card:Int) = {
-    node.setProperty(PropertyImpl.Prop_maxCardinality, card)
+  def propertyType = {
+    PropertyType.withName(node(PropertyImpl.Prop_propertyType).asInstanceOf[String])
   }
 
-  //TODO : Implement
-  def referencedClass = null
+  def propertyType_=(t:PropertyType.PropertyType) = {
+    node.setProperty(PropertyImpl.Prop_propertyType, t.toString)
+  }
 
-  //TODO : Implement
-  def propertyType = null
 }
 
 object PropertyImpl
@@ -67,6 +70,6 @@ object PropertyImpl
   val className = "Property"
   val Prop_defaultValue = className + "." + "defaultValue"
   val Prop_restrictions = className + "." + "restrictions"
-  val Prop_minCardinality = className + "." + "minCardinality"
-  val Prop_maxCardinality = className + "." + "maxCardinality"
+  val Prop_cardinality = className + "." + "cardinality"
+  val Prop_propertyType = className + "." + "propertyType"
 }

@@ -8,7 +8,7 @@ import org.escapek.ekcmdb.tools.neo4j.Neo4JWrapper
 import scala.collection.JavaConversions._
 
 
-class CIClassImpl(override val node:Node) extends ModelNodeImpl(node) with CIClass with Neo4JWrapper
+class CIClassImpl(override val node:Node) extends ModelNodeImpl(node) with CIClass
 {
   def className = CIClassImpl.className
 
@@ -33,6 +33,14 @@ class CIClassImpl(override val node:Node) extends ModelNodeImpl(node) with CICla
     node.setProperty(CIClassImpl.Prop_isFinal, b)
   }
 
+  def isAssociation : Boolean = {
+    node(CIClassImpl.Prop_isAssociation).asInstanceOf[Boolean]
+  }
+
+  def isAssociation_=(b:Boolean) {
+    node.setProperty(CIClassImpl.Prop_isAssociation, b)
+  }
+
 	def baseClass : Option[CIClass] = {
     if(node.hasRelationship(RepositoryRelationships.Rel_ClassHasParentClass, Direction.OUTGOING))
       Some(new CIClassImpl(
@@ -41,7 +49,7 @@ class CIClassImpl(override val node:Node) extends ModelNodeImpl(node) with CICla
       None
   }
 
-  // TODO : Tink about it : should the relation created inside the POJO or outside in the domain classes
+  // TODO : Think about it : should the relation created inside the POJO or outside in the domain classes
   /*
   def baseClass_=(ciClass:CIClass) = {
     node.createRelationshipTo(ciClass, RepositoryRelationships.Rel_ClassHasParentClass)
@@ -59,4 +67,5 @@ object CIClassImpl
   val className = "CIClass"
   val Prop_isAbstract = className + "." + "isAbstract"
   val Prop_isFinal = className + "." + "isFinal"
+  val Prop_isAssociation = className + "." + "isAssociation"
 }
