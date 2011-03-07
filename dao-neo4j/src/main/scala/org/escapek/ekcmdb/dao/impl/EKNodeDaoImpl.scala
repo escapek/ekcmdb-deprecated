@@ -2,9 +2,8 @@ package org.escapek.ekcmdb.dao.impl
 
 import org.escapek.ekcmdb.model.neo4j.EKNodeImpl
 import org.escapek.ekcmdb.dao.EKNodeDao
-import org.neo4j.graphdb.{Node, GraphDatabaseService}
-import reflect.{ClassManifest, Manifest}
 import org.escapek.ekcmdb.model.EKNode
+import org.neo4j.graphdb.{NotFoundException, Node, GraphDatabaseService}
 
 /**
  * Created by IntelliJ IDEA.
@@ -17,8 +16,18 @@ abstract class EKNodeDaoImpl[T <: EKNode](val db : GraphDatabaseService) extends
 {
   def newTInstance(node : Node) : T
 
-  def getById(id:Long) : T =
+  def getById(id:Long) : Option[T] =
   {
-    newTInstance(db.getNodeById(id))
+    try {
+      Some(newTInstance(db.getNodeById(id)))
+    }
+    catch {
+      case ex:NotFoundException => None
+    }
+  }
+
+  def getClassName(node : Node) : String =
+  {
+    new EKNodeImpl(node).className
   }
 }

@@ -9,7 +9,7 @@ import org.escapek.ekcmdb.model.CIClass
  * Time: 15:48
  */
 
-trait CIClassDao extends ModelNodeDao
+trait CIClassDao
 {
 
 }

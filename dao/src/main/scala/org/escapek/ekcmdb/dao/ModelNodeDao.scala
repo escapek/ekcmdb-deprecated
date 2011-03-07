@@ -9,8 +9,8 @@ import org.escapek.ekcmdb.model.ModelNode
  * Time: 17:36
  */
 
-trait ModelNodeDao extends EKNodeDao[ModelNode]
+trait ModelNodeDao[T]
 {
-  def getByName(className : String) : ModelNode
+  def getByName(className : String) : Option[T]
 
 }

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/dao/dao.iml" filepath="$PROJECT_DIR$/dao/dao.iml" />
       <module fileurl="file://$PROJECT_DIR$/untitled/dao.iml" filepath="$PROJECT_DIR$/untitled/dao.iml" />
       <module fileurl="file://$PROJECT_DIR$/dao-neo4j/dao-neo4j.iml" filepath="$PROJECT_DIR$/dao-neo4j/dao-neo4j.iml" />
       <module fileurl="file://$PROJECT_DIR$/ekcmdb.iml" filepath="$PROJECT_DIR$/ekcmdb.iml" />
