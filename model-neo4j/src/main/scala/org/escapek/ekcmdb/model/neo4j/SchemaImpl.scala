@@ -7,7 +7,7 @@ import org.neo4j.graphdb.{Direction, Node}
 
 class SchemaImpl(override val node: Node) extends ModelNodeImpl(node) with Schema
 {
-	def className = SchemaImpl.className
+	override def className = SchemaImpl.className
 
   override def content : Set[CIClass] = {
     val iterator =

@@ -12,7 +12,8 @@ import scala.collection.JavaConversions._
  */
 
 class CIInstanceImpl(override val node:Node) extends EKNodeImpl(node) with CIInstance {
-  def className = CIInstanceImpl.className
+
+  override def className = CIInstanceImpl.className
 
   def properties =  {
     val iterator =

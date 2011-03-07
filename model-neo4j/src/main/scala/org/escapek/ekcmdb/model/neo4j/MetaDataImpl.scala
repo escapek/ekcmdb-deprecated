@@ -5,6 +5,8 @@ import org.neo4j.graphdb.{Direction, Node}
 
 class MetaDataImpl(override val node:Node) extends Neo4JNode(node) with MetaData
 {
+  override def className = MetaDataImpl.className
+
   def name = {
     val incRel = node.getSingleRelationship(RepositoryRelationships.Rel_RepositoryElementToMedaData,Direction.INCOMING)
     incRel(RepositoryRelationships.RelProp_RepositoryElementToMedaData_name).asInstanceOf[String]
@@ -18,11 +20,10 @@ class MetaDataImpl(override val node:Node) extends Neo4JNode(node) with MetaData
     node.setProperty(MetaDataImpl.Prop_value, v)
   }
 
-  def className = MetaDataImpl.className
 }
 
 object MetaDataImpl
 {
   val className = "MetaData"
-  val Prop_value = className + "." + "value"
+  val Prop_value = className + ".value"
 }

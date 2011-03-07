@@ -10,7 +10,7 @@ import scala.collection.JavaConversions._
 
 class CIClassImpl(override val node:Node) extends ModelNodeImpl(node) with CIClass
 {
-  def className = CIClassImpl.className
+  override def className = CIClassImpl.className
 
 	def schema : Schema = {
 		new SchemaImpl(
@@ -65,7 +65,7 @@ class CIClassImpl(override val node:Node) extends ModelNodeImpl(node) with CICla
 object CIClassImpl
 {
   val className = "CIClass"
-  val Prop_isAbstract = className + "." + "isAbstract"
-  val Prop_isFinal = className + "." + "isFinal"
-  val Prop_isAssociation = className + "." + "isAssociation"
+  val Prop_isAbstract = className + ".isAbstract"
+  val Prop_isFinal = className + ".isFinal"
+  val Prop_isAssociation = className + ".isAssociation"
 }

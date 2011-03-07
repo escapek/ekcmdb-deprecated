@@ -12,7 +12,8 @@ import org.neo4j.graphdb.{Direction, Node}
  */
 
 class InstancePropertyImpl(override val node:Node) extends EKNodeImpl(node) with InstanceProperty {
-  def className = InstancePropertyImpl.className
+
+  override def className = InstancePropertyImpl.className
 
   def definitionProperty = {
     new PropertyImpl(

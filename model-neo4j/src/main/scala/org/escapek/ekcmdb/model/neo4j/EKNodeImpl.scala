@@ -4,8 +4,10 @@ import org.neo4j.graphdb.{Node, Direction}
 import scala.collection.JavaConversions._
 import org.escapek.ekcmdb.model.{MetaData, EKNode}
 
-abstract class EKNodeImpl(override val node:Node) extends Neo4JNode(node) with EKNode
+class EKNodeImpl(override val node:Node) extends Neo4JNode(node) with EKNode
 {
+  override def className = EKNodeImpl.className
+
 	override def id =
 	{
 		node.getId
@@ -34,5 +36,6 @@ abstract class EKNodeImpl(override val node:Node) extends Neo4JNode(node) with E
 
 object EKNodeImpl
 {
-  val Prop_version = "version"
+  val className = "EKNode"
+  val Prop_version = className + ".version"
 }

@@ -3,8 +3,10 @@ package org.escapek.ekcmdb.model.neo4j
 import org.escapek.ekcmdb.model.ModelNode
 import org.neo4j.graphdb.Node
 
-abstract class ModelNodeImpl(override val node: Node) extends EKNodeImpl(node) with ModelNode
+class ModelNodeImpl(override val node: Node) extends EKNodeImpl(node) with ModelNode
 {
+  override def className = ModelNodeImpl.className
+
 	def name = {
 		node.getProperty(ModelNodeImpl.Prop_Name).asInstanceOf[String]
 	}
@@ -30,7 +32,8 @@ abstract class ModelNodeImpl(override val node: Node) extends EKNodeImpl(node) w
 
 object ModelNodeImpl
 {
-	val Prop_Name = "name"
-	val Prop_DisplayName = "displayName"
-	val Prop_Description = "description"
+  val className = "ModelNode"
+	val Prop_Name = className + ".name"
+	val Prop_DisplayName = className + ".displayName"
+	val Prop_Description = className + ".description"
 }

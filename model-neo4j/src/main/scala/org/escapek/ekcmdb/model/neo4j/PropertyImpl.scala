@@ -13,7 +13,7 @@ import org.escapek.ekcmdb.model.{PropertyType, Property}
 
 class PropertyImpl(override val node:Node) extends ModelNodeImpl(node) with Property
 {
-  def className = PropertyImpl.className
+  override def className = PropertyImpl.className
 
   def overrides = {
     if(node.hasRelationship(RepositoryRelationships.Rel_PropertyOverrides, Direction.OUTGOING))
