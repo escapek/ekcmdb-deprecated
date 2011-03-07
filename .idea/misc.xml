@@ -11,6 +11,7 @@
       <facet-type id="scala">
         <modules>
           <module name="dao" />
+          <module name="dao-neo4j" />
           <module name="model-neo4j" />
         </modules>
       </facet-type>
