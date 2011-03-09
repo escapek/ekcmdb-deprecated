@@ -16,7 +16,7 @@ import org.escapek.ekcmdb.model.neo4j.CIClassImpl
 
 class CIClassDaoImpl(db:GraphDatabaseService) extends ModelNodeDaoImpl[CIClass](db) with CIClassDao
 {
-  def newTInstance(node: Node) : CIClass =
+  override def fromNode(node: Node) : CIClass =
   {
     new CIClassImpl(node)
   }

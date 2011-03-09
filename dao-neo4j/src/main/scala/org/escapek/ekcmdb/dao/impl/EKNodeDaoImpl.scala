@@ -14,12 +14,12 @@ import org.neo4j.graphdb.{NotFoundException, Node, GraphDatabaseService}
 
 abstract class EKNodeDaoImpl[T <: EKNode](val db : GraphDatabaseService) extends EKNodeDao[T]
 {
-  def newTInstance(node : Node) : T
+  def fromNode(node : Node) : T
 
   def getById(id:Long) : Option[T] =
   {
     try {
-      Some(newTInstance(db.getNodeById(id)))
+      Some(fromNode(db.getNodeById(id)))
     }
     catch {
       case ex:NotFoundException => None

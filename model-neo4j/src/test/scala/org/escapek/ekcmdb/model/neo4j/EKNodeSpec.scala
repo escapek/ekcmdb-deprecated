@@ -16,10 +16,6 @@ import org.scalatest.{BeforeAndAfterAll, WordSpec}
 @RunWith(classOf[JUnitRunner])
 class EKNodeSpec extends WordSpec with MustMatchers with BeforeAndAfterAll {
   var graphDB : GraphDatabaseService = _
-  class TestEKNode(override val node:Node) extends EKNodeImpl(node)
-  {
-    def className = "TestEKNode"
-  }
 
   override def beforeAll(configMap: Map[String, Any])
   {
@@ -36,7 +32,7 @@ class EKNodeSpec extends WordSpec with MustMatchers with BeforeAndAfterAll {
       "have a Id initialized to a value" in {
         val tx = graphDB.beginTx
         val node = graphDB.createNode
-        val ekNode = new TestEKNode(node)
+        val ekNode = new EKNodeImpl(node)
         tx.success
         tx.finish
         assert(ekNode.id !=0)
@@ -45,7 +41,7 @@ class EKNodeSpec extends WordSpec with MustMatchers with BeforeAndAfterAll {
       "have an empty metadata list" in {
         val tx = graphDB.beginTx
         val node = graphDB.createNode
-        val ekNode = new TestEKNode(node)
+        val ekNode = new EKNodeImpl(node)
         tx.success
         tx.finish
         assert(ekNode.metaData == Map.empty)
@@ -57,7 +53,7 @@ class EKNodeSpec extends WordSpec with MustMatchers with BeforeAndAfterAll {
   "A new EKNode" should {
     "throw an IllegalArgumentException if no graph node is given in constructor" in {
       intercept[IllegalArgumentException] {
-        new TestEKNode(null)
+        new EKNodeImpl(null)
       }
     }
   }
