@@ -13,6 +13,7 @@
           <module name="dao" />
           <module name="dao-neo4j" />
           <module name="model-neo4j" />
+          <module name="services" />
         </modules>
       </facet-type>
     </autodetection-disabled>
