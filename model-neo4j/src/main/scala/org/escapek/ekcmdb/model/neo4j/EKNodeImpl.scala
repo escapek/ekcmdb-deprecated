@@ -6,7 +6,7 @@ import org.escapek.ekcmdb.model.{MetaData, EKNode}
 
 class EKNodeImpl(override val node:Node) extends Neo4JNode(node) with EKNode
 {
-  override def className = EKNodeImpl.className
+  def className = EKNodeImpl.className
 
 	override def id =
 	{

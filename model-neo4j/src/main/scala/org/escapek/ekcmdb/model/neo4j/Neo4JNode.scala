@@ -11,11 +11,11 @@ import org.escapek.ekcmdb.tools.neo4j.Neo4JWrapper
  * Time: 12:00
  */
 
-class Neo4JNode(val node:Node) extends Neo4JWrapper
+abstract class Neo4JNode(val node:Node) extends Neo4JWrapper
 {
   require(node != null)
   
-  def className = Neo4JNode.className
+  def className : String
 
   if( !node.hasProperty(Neo4JNode.Prop_nodeClass))
     node.setProperty(Neo4JNode.Prop_nodeClass, className)
@@ -28,6 +28,5 @@ class Neo4JNode(val node:Node) extends Neo4JWrapper
 
 object Neo4JNode
 {
-  val className = "Neo4JNode"
-  val Prop_nodeClass = "nodeClass"
+  val Prop_nodeClass = "Neo4JNode.nodeClass"
 }
