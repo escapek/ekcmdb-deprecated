@@ -1,10 +1,10 @@
 package org.escapek.ekcmdb.dao.impl
 
-import org.escapek.ekcmdb.model.CIClass
 import org.escapek.ekcmdb.dao.CIClassDao
 import org.neo4j.graphdb.{Node, GraphDatabaseService}
 import org.escapek.ekcmdb.model.neo4j.CIClassImpl
 import scala.collection.JavaConversions._
+import org.escapek.ekcmdb.model.{Schema, CIClass}
 
 
 /**
@@ -22,13 +22,19 @@ class CIClassDaoImpl(db:GraphDatabaseService) extends EKNodeDaoImpl[CIClass](db)
     new CIClassImpl(node)
   }
 
-  def getByName(className: String) : Option[CIClass] =
+  def getByName(schema : Schema, className: String) : Option[CIClass] =
   {
+    schema.content.find(c => c.name.equals(className))
+  }
+
+  // TODO
+  def findByName(className: String) : Set[CIClass] =
+  {
+    /*
     val iterator = db.getAllNodes().iterator
     val foundNode = iterator.find(n => new CIClassImpl(n).name.equals(className))
-    foundNode match {
-      case Some(n:Node) => Some(fromNode(n))
-      case _ => None
-    }
+    Set.empty[CIClass] ++ iterator.map(n => new CIClassImpl(n)).filter(c => c.name.equals(className))
+    */
+    Set.empty[CIClass]
   }
 }

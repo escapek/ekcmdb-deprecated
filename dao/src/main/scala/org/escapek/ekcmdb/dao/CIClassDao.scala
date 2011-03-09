@@ -1,6 +1,6 @@
 package org.escapek.ekcmdb.dao
 
-import org.escapek.ekcmdb.model.CIClass
+import org.escapek.ekcmdb.model.{Schema, CIClass}
 
 /**
  * Created by IntelliJ IDEA.
@@ -11,6 +11,7 @@ import org.escapek.ekcmdb.model.CIClass
 
 trait CIClassDao extends EKNodeDao[CIClass] with NameNodeDao[CIClass]
 {
-  def getByName(className : String) : Option[CIClass]
+  def getByName(schema : Schema, className: String) : Option[CIClass]
+  def findByName(className : String) : Set[CIClass]
 
 }
