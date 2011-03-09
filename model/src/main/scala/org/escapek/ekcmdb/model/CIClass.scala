@@ -1,6 +1,6 @@
 package org.escapek.ekcmdb.model
 
-trait CIClass extends ModelNode
+trait CIClass extends EKNode with NamedNode
 {
 	def schema : Schema
 	def isAbstract : Boolean

@@ -1,6 +1,6 @@
 package org.escapek.ekcmdb.dao
 
-import org.escapek.ekcmdb.model.ModelNode
+import org.escapek.ekcmdb.model.NamedNode
 
 /**
  * Created by IntelliJ IDEA.
@@ -9,8 +9,7 @@ import org.escapek.ekcmdb.model.ModelNode
  * Time: 17:36
  */
 
-trait ModelNodeDao[T]
+trait ModelNodeDao[T <: NamedNode] extends EKNodeDao[T]
 {
-  def getByName(className : String) : Option[T]
 
 }

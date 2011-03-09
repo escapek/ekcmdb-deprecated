@@ -2,7 +2,7 @@ package org.escapek.ekcmdb.model
 
 import org.escapek.ekcmdb.model.PropertyType._
 
-trait Property extends ModelNode {
+trait Property extends NamedNode {
 	def defaultValue : String
 	def restrictions : String
 

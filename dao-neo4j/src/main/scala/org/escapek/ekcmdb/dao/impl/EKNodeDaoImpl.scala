@@ -14,7 +14,7 @@ import org.neo4j.graphdb.{NotFoundException, Node, GraphDatabaseService}
 
 abstract class EKNodeDaoImpl[T <: EKNode](val db : GraphDatabaseService) extends EKNodeDao[T]
 {
-  def fromNode(node : Node) : T
+  protected def fromNode(node : Node) : T
 
   def getById(id:Long) : Option[T] =
   {
@@ -29,5 +29,9 @@ abstract class EKNodeDaoImpl[T <: EKNode](val db : GraphDatabaseService) extends
   def getClassName(node : Node) : String =
   {
     new EKNodeImpl(node).className
+  }
+
+  def createNew() : T = {
+    fromNode(db.createNode)
   }
 }

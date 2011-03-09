@@ -1,6 +1,6 @@
 package org.escapek.ekcmdb.model
 
-trait Schema extends ModelNode
+trait Schema extends NamedNode
 {
 	def content : Set[CIClass]
 }

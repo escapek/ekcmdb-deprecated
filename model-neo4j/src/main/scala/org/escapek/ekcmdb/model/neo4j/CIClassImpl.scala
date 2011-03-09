@@ -8,7 +8,7 @@ import org.escapek.ekcmdb.tools.neo4j.Neo4JWrapper
 import scala.collection.JavaConversions._
 
 
-class CIClassImpl(override val node:Node) extends ModelNodeImpl(node) with CIClass
+class CIClassImpl(override val node:Node) extends CIClass with NamedlNodeImpl(node)
 {
   override def className = CIClassImpl.className
 

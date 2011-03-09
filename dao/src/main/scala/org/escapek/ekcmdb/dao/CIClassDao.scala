@@ -9,7 +9,8 @@ import org.escapek.ekcmdb.model.CIClass
  * Time: 15:48
  */
 
-trait CIClassDao
+trait CIClassDao extends ModelNodeDao[CIClass]
 {
+  def getByName(className : String) : Option[CIClass]
 
 }

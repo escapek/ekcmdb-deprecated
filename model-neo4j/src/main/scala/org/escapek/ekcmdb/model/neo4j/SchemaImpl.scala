@@ -5,7 +5,7 @@ import org.escapek.ekcmdb.model.Schema
 import scala.collection.JavaConversions._
 import org.neo4j.graphdb.{Direction, Node}
 
-class SchemaImpl(override val node: Node) extends ModelNodeImpl(node) with Schema
+class SchemaImpl(override val node: Node) extends NamedlNodeImpl(node) with Schema
 {
 	override def className = SchemaImpl.className
 

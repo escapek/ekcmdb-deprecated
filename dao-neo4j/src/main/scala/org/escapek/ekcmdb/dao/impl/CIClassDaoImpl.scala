@@ -20,4 +20,14 @@ class CIClassDaoImpl(db:GraphDatabaseService) extends ModelNodeDaoImpl[CIClass](
   {
     new CIClassImpl(node)
   }
+
+  def getByName(className: String) : Option[CIClass] =
+  {
+    val iterator = db.getAllNodes().iterator
+    val foundNode = iterator.find(n => new CIClassImpl(n).name.equals(nodeName))
+    foundNode match {
+      case Some(n:Node) => Some(fromNode(n))
+      case _ => None
+    }
+  }
 }
