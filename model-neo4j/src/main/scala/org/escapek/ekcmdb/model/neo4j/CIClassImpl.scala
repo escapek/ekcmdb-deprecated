@@ -1,14 +1,12 @@
 package org.escapek.ekcmdb.model.neo4j
 
-import org.escapek.ekcmdb.model.Property
-import org.escapek.ekcmdb.model.CIClass
-import org.escapek.ekcmdb.model.Schema
 import org.neo4j.graphdb._
 import org.escapek.ekcmdb.tools.neo4j.Neo4JWrapper
 import scala.collection.JavaConversions._
+import org.escapek.ekcmdb.model.{EKNode, Property, CIClass, Schema}
 
 
-class CIClassImpl(override val node:Node) extends CIClass with NamedlNodeImpl(node)
+class CIClassImpl(override val node:Node) extends EKNodeImpl(node) with CIClass with NamedlNodeImpl
 {
   override def className = CIClassImpl.className
 

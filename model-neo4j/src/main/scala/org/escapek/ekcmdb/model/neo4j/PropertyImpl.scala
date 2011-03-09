@@ -11,7 +11,7 @@ import org.escapek.ekcmdb.model.{PropertyType, Property}
  * Time: 15:20
  */
 
-class PropertyImpl(override val node:Node) extends NamedlNodeImpl(node) with Property
+class PropertyImpl(override val node:Node) extends EKNodeImpl(node) with Property with NamedlNodeImpl
 {
   override def className = PropertyImpl.className
 

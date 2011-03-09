@@ -3,8 +3,10 @@ package org.escapek.ekcmdb.model.neo4j
 import org.escapek.ekcmdb.model.NamedNode
 import org.neo4j.graphdb.Node
 
-trait NamedlNodeImpl(override val node: Node) with NamedNode
+trait NamedlNodeImpl extends NamedNode
 {
+  def node:Node
+
 	def name = {
 		node.getProperty(NamedlNodeImpl.Prop_Name).asInstanceOf[String]
 	}
