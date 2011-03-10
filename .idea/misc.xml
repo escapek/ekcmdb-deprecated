@@ -8,6 +8,11 @@
   </component>
   <component name="FacetAutodetectingManager">
     <autodetection-disabled>
+      <facet-type id="Osmorc">
+        <modules>
+          <module name="services" />
+        </modules>
+      </facet-type>
       <facet-type id="scala">
         <modules>
           <module name="dao" />
@@ -43,6 +48,7 @@
     </option>
   </component>
   <component name="ProjectResources">
+    <resource url="http://www.osgi.org/xmlns/blueprint/v1.0.0" location="$PROJECT_DIR$/services/src/main/ressources/OSGI-INF/blueprint/blueprint.xsd" />
     <default-html-doctype>http://www.w3.org/1999/xhtml</default-html-doctype>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.6 (1)" project-jdk-type="JavaSDK">
