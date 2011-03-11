@@ -1,78 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-	<groupId>org.escapek</groupId>
-	<artifactId>ekcmdb</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>pom</packaging>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.escapek</groupId>
+  <artifactId>ekcmdb</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
 
-	<name>EscapeK CMDB</name>
-	<url>http://maven.apache.org</url>
+  <packaging>pom</packaging>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <scala.version>2.8.1</scala.version>
-	</properties>
+  <name>EscapeK CMDB</name>
 
-	<repositories>
-		<repository>
-			<id>scala-tools.org</id>
-			<name>Scala-tools Maven2 Repository</name>
-			<url>http://scala-tools.org/repo-releases</url>
-		</repository>
-        <repository>
-            <id>neo.org</id>
-            <name>Neo4J Maven2 Repository</name>
-            <url>http://m2.neo4j.org/</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>maven2-repository.dev.java.net</id>
-            <name>Java.net Repository for Maven</name>
-            <url>http://download.java.net/maven/2/</url>
-            <layout>default</layout>
-        </repository>
-	</repositories>
+  <url>http://maven.apache.org</url>
 
-	<pluginRepositories>
-		<pluginRepository>
-			<id>scala-tools.org</id>
-			<name>Scala-tools Maven2 Repository</name>
-			<url>http://scala-tools.org/repo-releases</url>
-		</pluginRepository>
-	</pluginRepositories>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <scala.version>2.8.1</scala.version>
+  </properties>
 
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.scala-tools</groupId>
-                    <artifactId>maven-scala-plugin</artifactId>
-                    <version>2.15.2</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
+  <repositories>
+    <repository>
+      <id>scala-tools.org</id>
+      <name>Scala-tools Maven2 Repository</name>
+      <url>http://scala-tools.org/repo-releases</url>
+    </repository>
+    <repository>
+      <id>neo.org</id>
+      <name>Neo4J Maven2 Repository</name>
+      <url>http://m2.neo4j.org/</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>maven2-repository.dev.java.net</id>
+      <name>Java.net Repository for Maven</name>
+      <url>http://download.java.net/maven/2/</url>
+      <layout>default</layout>
+    </repository>
+  </repositories>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>4.8.2</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
-	<modules>
-		<module>model</module>
-		<module>model-neo4j</module>
-		<module>tools-neo4j</module>
-        <module>dao</module>
-        <module>dao-neo4j</module>
-        <module>services</module>
-    </modules>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>scala-tools.org</id>
+      <name>Scala-tools Maven2 Repository</name>
+      <url>http://scala-tools.org/repo-releases</url>
+    </pluginRepository>
+  </pluginRepositories>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.scala-tools</groupId>
+          <artifactId>maven-scala-plugin</artifactId>
+          <version>2.15.2</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <dependencyManagement>
+        <dependencies>
+          <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.8.2</version>
+            <scope>test</scope>
+          </dependency>
+        <dependency>
+            <groupId>com.weiglewilczek.scala-lang-osgi</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>2.8.1</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <modules>
+    <module>model</module>
+    <module>model-neo4j</module>
+    <module>tools-neo4j</module>
+    <module>dao</module>
+    <module>dao-neo4j</module>
+    <module>services</module>
+    <module>services-common</module>
+  </modules>
+
 </project>

@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
-    <facet type="scala" name="Scala">
-      <configuration>
-        <option name="compilerLibraryLevel" value="Project" />
-        <option name="compilerLibraryName" value="Maven: org.scala-lang:scala-compiler-bundle:WrappedArray(2.8.1)" />
-        <option name="vmOptions" value="" />
-      </configuration>
-    </facet>
     <facet type="Osmorc" name="OSGi">
-      <configuration osmorcControlsManifest="true" manifestLocation="" jarfileLocation="services.jar" outputPathType="CompilerOutputPath" useBndFile="false" bndFileLocation="" useBundlorFile="false" bundlorFileLocation="" bundleActivator="" bundleSymbolicName="services" bundleVersion="0.0.1-SNAPSHOT" ignoreFilePattern="" useProjectDefaultManifestFileLocation="true" alwaysRebuildBundleJAR="false">
+      <configuration osmorcControlsManifest="true" manifestLocation="" jarfileLocation="services-common.jar" outputPathType="CompilerOutputPath" useBndFile="false" bndFileLocation="" useBundlorFile="false" bundlorFileLocation="" bundleActivator="" bundleSymbolicName="services-common" bundleVersion="0.0.1-SNAPSHOT" ignoreFilePattern="" useProjectDefaultManifestFileLocation="true" alwaysRebuildBundleJAR="false">
         <additionalProperties>
-          <property key="Export-Packages" value="org.escapek.ekcmdb.services" />
-          <property key="Import-Packages" value="org.escapek.ekcmsb.services.common" />
           <property key="Import-Package" value="*" />
+          <property key="Export-Package" value="org.escapek.ekcmdb.services.common" />
         </additionalProperties>
         <additionalJARContents />
+      </configuration>
+    </facet>
+    <facet type="scala" name="Scala">
+      <configuration>
+        <option name="compilerLibraryLevel" value="Global" />
+        <option name="compilerLibraryName" value="scala-compiler-2.8.1" />
       </configuration>
     </facet>
   </component>
@@ -23,15 +21,18 @@
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/src/test/scala" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/scala" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/scala" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.osgi:org.osgi.core:4.2.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.osgi:org.osgi.compendium:4.2.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.sun.jersey:jersey-server:1.5" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.sun.jersey:jersey-core:1.5" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: asm:asm:3.1" level="project" />
+    <orderEntry type="library" name="Maven: javax.servlet:servlet-api:2.5" level="project" />
   </component>
 </module>
 

@@ -10,13 +10,17 @@
     <autodetection-disabled>
       <facet-type id="Osmorc">
         <modules>
+          <module name="model" />
           <module name="services" />
+          <module name="services-common" />
+          <module name="test" />
         </modules>
       </facet-type>
       <facet-type id="scala">
         <modules>
           <module name="dao" />
           <module name="dao-neo4j" />
+          <module name="model" />
           <module name="model-neo4j" />
           <module name="services" />
         </modules>
