@@ -9,11 +9,10 @@
 	<groupId>org.escapek.ekcmdb</groupId>
 	<artifactId>model</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Abstract model</name>
+	<name>EKcmdb - Abstract model</name>
     <packaging>bundle</packaging>
 
     <properties>
-        <bundle.symbolicName>org.escapek.ekcmdb.model</bundle.symbolicName>
         <bundle.namespace>org.escapek.ekcmdb.model</bundle.namespace>
     </properties>
 
@@ -44,7 +43,7 @@
               <artifactId>maven-bundle-plugin</artifactId>
               <configuration>
                 <instructions>
-                  <Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
+                  <Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
                   <Bundle-Version>${pom.version}</Bundle-Version>
                   <Export-Package>!${bundle.namespace}.internal.*,${bundle.namespace}.*;version="${pom.version}"</Export-Package>
                   <Private-Package>${bundle.namespace}.internal.*</Private-Package>

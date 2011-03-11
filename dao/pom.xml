@@ -8,12 +8,17 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+    <packaging>bundle</packaging>
 
     <groupId>org.escapek.ekcmdb</groupId>
     <artifactId>dao</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <name>EKcmdb - Abstract DAO</name>
 
-    <name>Abstract model</name>
+    <properties>
+        <bundle.namespace>org.escapek.ekcmdb.dao</bundle.namespace>
+    </properties>
+
     <build>
         <sourceDirectory>src/main/scala</sourceDirectory>
         <testSourceDirectory>src/test/scala</testSourceDirectory>
@@ -29,6 +34,24 @@
                 </goals>
               </execution>
             </executions>
+            </plugin>
+            <plugin>
+              <groupId>org.ops4j</groupId>
+              <artifactId>maven-pax-plugin</artifactId>
+              <version>1.4</version>
+              <extensions>true</extensions>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.felix</groupId>
+              <artifactId>maven-bundle-plugin</artifactId>
+              <configuration>
+                <instructions>
+                  <Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
+                  <Bundle-Version>${pom.version}</Bundle-Version>
+                  <Export-Package>!${bundle.namespace}.internal.*,${bundle.namespace}.*;version="${pom.version}"</Export-Package>
+                  <Private-Package>${bundle.namespace}.internal.*</Private-Package>
+                </instructions>
+              </configuration>
             </plugin>
         </plugins>
     </build>

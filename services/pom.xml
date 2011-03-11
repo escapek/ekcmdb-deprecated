@@ -13,6 +13,7 @@
     <artifactId>services</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>bundle</packaging>
+    <name>EKcmdb - Model REST services</name>
 
     <build>
         <sourceDirectory>src/main/scala</sourceDirectory>
