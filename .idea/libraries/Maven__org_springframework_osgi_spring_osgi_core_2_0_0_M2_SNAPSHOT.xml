@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.springframework.osgi:spring-osgi-core:2.0.0.M2-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/osgi/spring-osgi-core/2.0.0.M2-SNAPSHOT/spring-osgi-core-2.0.0.M2-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/osgi/spring-osgi-core/2.0.0.M2-SNAPSHOT/spring-osgi-core-2.0.0.M2-SNAPSHOT-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/osgi/spring-osgi-core/2.0.0.M2-SNAPSHOT/spring-osgi-core-2.0.0.M2-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

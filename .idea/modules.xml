@@ -10,6 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/model-neo4j/model-neo4j.iml" filepath="$PROJECT_DIR$/model-neo4j/model-neo4j.iml" />
       <module fileurl="file://$PROJECT_DIR$/services/services.iml" filepath="$PROJECT_DIR$/services/services.iml" />
       <module fileurl="file://$PROJECT_DIR$/services-common/services-common.iml" filepath="$PROJECT_DIR$/services-common/services-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/services-sample/services-sample.iml" filepath="$PROJECT_DIR$/services-sample/services-sample.iml" />
       <module fileurl="file://$PROJECT_DIR$/tools-neo4j/tools-neo4j.iml" filepath="$PROJECT_DIR$/tools-neo4j/tools-neo4j.iml" />
     </modules>
   </component>
