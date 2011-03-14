@@ -1,6 +1,6 @@
 package org.escapek.ekcmdb.dao.impl
 
-import org.escapek.ekcmdb.model.NamedNode
+import org.escapek.ekcmdb.core.model.NamedNode
 import org.escapek.ekcmdb.dao.NameNodeDao
 import org.neo4j.graphdb.{Node, GraphDatabaseService}
 import org.escapek.ekcmdb.model.neo4j.NamedlNodeImpl

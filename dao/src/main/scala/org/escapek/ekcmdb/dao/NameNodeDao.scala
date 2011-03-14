@@ -1,6 +1,6 @@
 package org.escapek.ekcmdb.dao
 
-import org.escapek.ekcmdb.model.NamedNode
+import org.escapek.ekcmdb.core.model.NamedNode
 
 /**
  * Created by IntelliJ IDEA.

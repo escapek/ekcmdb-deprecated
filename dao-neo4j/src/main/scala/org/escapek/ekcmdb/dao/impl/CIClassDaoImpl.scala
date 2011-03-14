@@ -4,7 +4,7 @@ import org.escapek.ekcmdb.dao.CIClassDao
 import org.neo4j.graphdb.{Node, GraphDatabaseService}
 import org.escapek.ekcmdb.model.neo4j.CIClassImpl
 import scala.collection.JavaConversions._
-import org.escapek.ekcmdb.model.{Schema, CIClass}
+import org.escapek.ekcmdb.core.model.{Schema, CIClass}
 
 
 /**

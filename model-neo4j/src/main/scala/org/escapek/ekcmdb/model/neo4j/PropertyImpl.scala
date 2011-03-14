@@ -2,7 +2,7 @@ package org.escapek.ekcmdb.model.neo4j
 
 import org.escapek.ekcmdb.tools.neo4j.Neo4JWrapper
 import org.neo4j.graphdb.{Direction, Node}
-import org.escapek.ekcmdb.model.{PropertyType, Property}
+import org.escapek.ekcmdb.core.model.{PropertyType, Property}
 
 /**
  * Created by IntelliJ IDEA.

@@ -1,6 +1,6 @@
 package org.escapek.ekcmdb.dao
 
-import org.escapek.ekcmdb.model.{Schema, CIClass}
+import org.escapek.ekcmdb.core.model.{Schema, CIClass}
 
 /**
  * Created by IntelliJ IDEA.

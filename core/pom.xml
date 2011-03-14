@@ -7,10 +7,10 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<groupId>org.escapek.ekcmdb</groupId>
-	<artifactId>model</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>EKcmdb - Abstract model</name>
-    <packaging>bundle</packaging>
+	<artifactId>core</artifactId>
+	<packaging>bundle</packaging>
 
     <properties>
         <bundle.namespace>org.escapek.ekcmdb.model</bundle.namespace>

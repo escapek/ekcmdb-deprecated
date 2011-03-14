@@ -89,7 +89,7 @@
 	</dependencyManagement>
 
 	<modules>
-		<module>model</module>
+		<module>core</module>
 		<module>model-neo4j</module>
 		<module>tools-neo4j</module>
 		<module>dao</module>

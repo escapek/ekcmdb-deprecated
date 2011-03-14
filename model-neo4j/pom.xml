@@ -62,7 +62,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.escapek.ekcmdb</groupId>
-			<artifactId>model</artifactId>
+			<artifactId>core</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>

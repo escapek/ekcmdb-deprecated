@@ -1,6 +1,6 @@
 package org.escapek.ekcmdb.model.neo4j
 
-import org.escapek.ekcmdb.model.NamedNode
+import org.escapek.ekcmdb.core.model.NamedNode
 import org.neo4j.graphdb.Node
 
 trait NamedlNodeImpl extends NamedNode

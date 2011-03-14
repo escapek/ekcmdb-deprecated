@@ -1,6 +1,6 @@
 package org.escapek.ekcmdb.model.neo4j
 
-import org.escapek.ekcmdb.model.CIInstance
+import org.escapek.ekcmdb.core.model.CIInstance
 import org.neo4j.graphdb.{Node, Direction}
 import scala.collection.JavaConversions._
 

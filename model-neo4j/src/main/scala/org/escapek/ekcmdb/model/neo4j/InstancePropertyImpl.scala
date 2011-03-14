@@ -1,6 +1,6 @@
 package org.escapek.ekcmdb.model.neo4j
 
-import org.escapek.ekcmdb.model.InstanceProperty
+import org.escapek.ekcmdb.core.model.InstanceProperty
 import org.neo4j.graphdb.{Direction, Node}
 
 /**

@@ -1,6 +1,6 @@
 package org.escapek.ekcmdb.model.neo4j
 
-import org.escapek.ekcmdb.model.MetaData
+import org.escapek.ekcmdb.core.model.MetaData
 import org.neo4j.graphdb.{Direction, Node}
 
 class MetaDataImpl(override val node:Node) extends Neo4JNode(node) with MetaData

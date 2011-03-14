@@ -2,7 +2,7 @@ package org.escapek.ekcmdb.model.neo4j
 
 import org.neo4j.graphdb.{Node, Direction}
 import scala.collection.JavaConversions._
-import org.escapek.ekcmdb.model.{MetaData, EKNode}
+import org.escapek.ekcmdb.core.model.{MetaData, EKNode}
 
 class EKNodeImpl(override val node:Node) extends Neo4JNode(node) with EKNode
 {
