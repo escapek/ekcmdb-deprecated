@@ -1,0 +1,7 @@
+<classpath>
+  <classpathentry kind="src" path="src/main/scala" including="**/*.java"/>
+  <classpathentry kind="output" path="target/classes"/>
+  <classpathentry kind="src" path="/model"/>
+  <classpathentry kind="var" path="M2_REPO/org/scala-lang/scala-library/2.8.1/scala-library-2.8.1.jar"/>
+  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+</classpath>

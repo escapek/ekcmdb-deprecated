@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+
+    <reference id="httpService" interface="org.osgi.service.http.HttpService" />
+
+    <bean id="servicesApplication" class="org.escapek.ekcmdb.services.ServicesApplication" />
+
+    <bean id="jerseyServletFactory" class="org.escapek.ekcmdb.services.common.JerseyServletFactory" >
+    <property name="application" ref="servicesApplication" />
+    <property name="rootContext" value="/fun"/>
+    <property name="httpService" ref="httpServiceRef"/>
+    </bean>
+    
+    <bean id="SchemasResource" class="org.escapek.ekcmdb.services.SchemasResource" />
+</blueprint>
