@@ -1,7 +1,7 @@
 package org.escapek.ekcmdb.dao.impl
 
 import org.escapek.ekcmdb.model.neo4j.EKNodeImpl
-import org.escapek.ekcmdb.dao.EKNodeDao
+import org.escapek.ekcmdb.core.dao.EKNodeDao
 import org.escapek.ekcmdb.core.model.EKNode
 import org.neo4j.graphdb.{NotFoundException, Node, GraphDatabaseService}
 

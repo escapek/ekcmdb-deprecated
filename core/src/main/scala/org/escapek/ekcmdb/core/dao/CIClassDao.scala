@@ -1,4 +1,4 @@
-package org.escapek.ekcmdb.dao
+package org.escapek.ekcmdb.core.dao
 
 import org.escapek.ekcmdb.core.model.{Schema, CIClass}
 

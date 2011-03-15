@@ -64,11 +64,6 @@
 		</dependency>
         <dependency>
             <groupId>org.escapek.ekcmdb</groupId>
-            <artifactId>dao</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.escapek.ekcmdb</groupId>
             <artifactId>model-neo4j</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>

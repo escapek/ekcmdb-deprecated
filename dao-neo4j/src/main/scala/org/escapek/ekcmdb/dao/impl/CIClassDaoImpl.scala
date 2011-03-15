@@ -1,6 +1,6 @@
 package org.escapek.ekcmdb.dao.impl
 
-import org.escapek.ekcmdb.dao.CIClassDao
+import org.escapek.ekcmdb.core.dao.CIClassDao
 import org.neo4j.graphdb.{Node, GraphDatabaseService}
 import org.escapek.ekcmdb.model.neo4j.CIClassImpl
 import scala.collection.JavaConversions._
