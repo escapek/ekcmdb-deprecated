@@ -65,11 +65,5 @@ abstract class EKcmdbServicesActivator extends BundleActivator
 			val httpService : HttpService = obj.asInstanceOf[HttpService]
 			httpService.registerServlet(contextRoot, new ServletContainer(), jerseyServletParams, null)
 		}
-
 	}
-	
-	def unregister(sr : ServiceReference) = {
-		//TODO
-	}
-	
 }
