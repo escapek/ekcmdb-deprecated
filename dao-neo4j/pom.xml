@@ -5,6 +5,7 @@
         <artifactId>ekcmdb</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
+	<groupId>org.escapek.ekcmdb</groupId>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>dao-neo4j</artifactId>
     <name>EKcmdb - DAO implementation</name>
