@@ -39,6 +39,11 @@
 			<url>http://download.java.net/maven/2/</url>
 			<layout>default</layout>
 		</repository>
+		<repository>
+			<id>Akka</id>
+			<name>Akka Maven2 Repository</name>
+			<url>http://akka.io/repository/</url>
+		</repository>
 	</repositories>
 
 	<pluginRepositories>
@@ -61,6 +66,11 @@
 					<groupId>org.apache.felix</groupId>
 					<artifactId>maven-bundle-plugin</artifactId>
 					<version>2.3.4</version>
+				</plugin>
+				<plugin>
+					<groupId>org.ops4j</groupId>
+					<artifactId>maven-pax-plugin</artifactId>
+					<version>1.4</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -92,7 +102,6 @@
 		<module>core</module>
 		<module>model-neo4j</module>
 		<module>tools-neo4j</module>
-		<module>dao</module>
 		<module>dao-neo4j</module>
 		<module>services</module>
 		<module>services-common</module>
