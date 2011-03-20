@@ -106,6 +106,7 @@
 		<module>services</module>
 		<module>services-common</module>
 		<module>services-sample</module>
+		<module>osgi-dependencies</module>
 	</modules>
 
 </project>

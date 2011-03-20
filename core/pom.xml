@@ -50,8 +50,9 @@
 
     <dependencies>
         <dependency>
-        <groupId>com.weiglewilczek.scala-lang-osgi</groupId>
-        <artifactId>scala-library</artifactId>
+        <groupId>org.escapek.ekcmdb</groupId>
+        <artifactId>osgi-dependencies</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
