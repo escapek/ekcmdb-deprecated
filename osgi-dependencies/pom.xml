@@ -12,8 +12,29 @@
 	<packaging>bundle</packaging>
 	<name>EKcmdb - OSGi dependencies</name>
 
+	<repositories>
+		<repository>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>akka.io</id>
+			<name>Akka maven repository</name>
+			<url>http://akka.io/repository/</url>
+		</repository>
+	</repositories>
+
 	<properties>
-		<scala.version>2.8.1</scala.version>
+		<org.scala-lang.scala.version>2.8.1</org.scala-lang.scala.version>
+		<javax.transaction.jta.version>1.1</javax.transaction.jta.version>
+		<com.eaio.uuid.version>3.2</com.eaio.uuid.version>
+		<jsr166x.jsr166x.version>1.0</jsr166x.jsr166x.version>
+		<org.fusesource.hawtdispatch.version>1.0</org.fusesource.hawtdispatch.version>
+		<net.lag.configgy.version>2.0.2-nologgy</net.lag.configgy.version>
+		<ch.qos.logback.logback-classic.version>0.9.24</ch.qos.logback.logback-classic.version>
+		<org.slf4j.alf4j-api.version>1.6.0</org.slf4j.alf4j-api.version>
 	</properties>
 	<build>
 		<plugins>
@@ -25,10 +46,15 @@
 					<instructions>
 						<Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
 						<Bundle-Version>${project.version}</Bundle-Version>
-						<Export-Package>scala.*;version=${scala.version}</Export-Package>
-						<Import-Package>sun.*;resolution:=optional,*</Import-Package>
-						<Embed-Dependency>*;scope=!runtime</Embed-Dependency>
-						<Embed-Transitive>true</Embed-Transitive>
+						<Export-Package>scala.*;version=${org.scala-lang.scala.version},
+							javax.*;version=${javax.transaction.jta.version};-split-package:=merge-last,
+							com.eaio.*;version=${com.eaio.uuid.version},
+							jsr166x.*;version=${jsr166x.jsr166x.version},
+							net.lag.configgy.*;version=${net.lag.configgy.version},
+							org.fusesource.hawtdispatch.*;version=${org.fusesource.hawtdispatch.version};-split-package:=merge-last,
+							ch.qos.logback.*;version=${ch.qos.logback.logback-classic.version}</Export-Package>
+							org.slf4j.*;version=${org.slf4j.alf4j-api.version}
+						<Import-Package>*;resolution:=optional</Import-Package>
 					</instructions>
 				</configuration>
 			</plugin>
@@ -39,7 +65,45 @@
 		<dependency>
 			<groupId>org.scala-lang</groupId>
 			<artifactId>scala-library</artifactId>
-			<version>${scala.version}</version>
+			<version>${org.scala-lang.scala.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.transaction</groupId>
+			<artifactId>jta</artifactId>
+			<version>${javax.transaction.jta.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.eaio</groupId>
+			<artifactId>uuid</artifactId>
+			<version>${com.eaio.uuid.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>jsr166x</groupId>
+			<artifactId>jsr166x</artifactId>
+			<version>${jsr166x.jsr166x.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.fusesource.hawtdispatch</groupId>
+			<artifactId>hawtdispatch-scala</artifactId>
+			<version>${org.fusesource.hawtdispatch.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.lag</groupId>
+			<artifactId>configgy</artifactId>
+			<version>${net.lag.configgy.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${ch.qos.logback.logback-classic.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${org.slf4j.alf4j-api.version}</version>
 		</dependency>
 	</dependencies>
 </project>
