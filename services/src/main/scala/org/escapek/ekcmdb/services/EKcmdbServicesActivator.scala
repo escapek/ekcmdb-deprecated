@@ -18,9 +18,9 @@ import java.util.HashMap
  * Time: 16:38
  */
 
-abstract class EKcmdbServicesActivator extends BundleActivator {
-  var httpTracker: ServiceTracker
-  var context: BundleContext
+class EKcmdbServicesActivator extends BundleActivator {
+  var httpTracker: ServiceTracker = _
+  var context: BundleContext = _
 
   case class ApplicationDeployed(sr: ServiceReference)
   class EventAdminActor extends Actor {
@@ -66,6 +66,9 @@ abstract class EKcmdbServicesActivator extends BundleActivator {
       }
     }
 
+  def stop(ctx: BundleContext) = {
+  }
+  
   def handleEvent(event: ServiceEvent) = {
     event.getType match {
       case ServiceEvent.REGISTERED => register(event.getServiceReference)
