@@ -40,7 +40,7 @@ class EKcmdbServicesActivator extends BundleActivator {
       }
     }
   }
-  val eventAdminActor = Actor.actorOf[EventAdminActor]
+  val eventAdminActor = Actor.actorOf(new EventAdminActor())
 
   // Implicit conversion from function to ServiceListener
   implicit def function2ServiceListener(f: ServiceEvent => Unit) =
@@ -51,22 +51,30 @@ class EKcmdbServicesActivator extends BundleActivator {
   def start(ctx: BundleContext) =
     {
       context = ctx
+      
+      eventAdminActor.start
 
       httpTracker = new ServiceTracker(context, classOf[HttpService].getName, null)
       httpTracker.open
 
       // Add RS-Application services listener
-      val filter = "objectClass=" + classOf[Application].getName + ")"
+      val filter = "(objectClass=" + classOf[Application].getName + ")"
       context.addServiceListener(
         (ev: ServiceEvent) => handleEvent(ev),
         filter)
 
-      for (ref <- context.getServiceReferences(null, filter)) {
-        handleEvent(new ServiceEvent(ServiceEvent.REGISTERED, ref))
+      val refs : Array[ServiceReference] = context.getServiceReferences(null, filter)
+      if(refs != null)
+      {
+        for (ref <- context.getServiceReferences(null, filter))
+        {
+        	handleEvent(new ServiceEvent(ServiceEvent.REGISTERED, ref))
+        }
       }
     }
 
   def stop(ctx: BundleContext) = {
+	  httpTracker.close
   }
   
   def handleEvent(event: ServiceEvent) = {
