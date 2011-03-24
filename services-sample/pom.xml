@@ -48,6 +48,7 @@
 						<Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName>
 						<Export-Packages>org.escapek.ekcmdb.services</Export-Packages>
 						<Import-Package>*</Import-Package>
+						<Bundle-Activator>org.escapek.ekcmdb.services.SampleServicesActivator</Bundle-Activator>
 					</instructions>
 				</configuration>
 			</plugin>
@@ -56,16 +57,14 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.osgi</groupId>
-			<artifactId>org.osgi.core</artifactId>
-			<version>4.2.0</version>
-			<scope>provided</scope>
+			<groupId>org.escapek.ekcmdb</groupId>
+			<artifactId>services</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>org.osgi</groupId>
-			<artifactId>org.osgi.compendium</artifactId>
-			<version>4.2.0</version>
-			<scope>provided</scope>
+			<groupId>org.escapek.ekcmdb</groupId>
+			<artifactId>core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.sun.jersey</groupId>

@@ -42,7 +42,7 @@
 	              	<manifestLocation>META-INF</manifestLocation>
 					<instructions>
 						<Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName>
-						<Export-Packages>org.escapek.ekcmdb.services;com.eaio.*</Export-Packages>
+						<Export-Packages>org.escapek.ekcmdb.services.*</Export-Packages>
 						<Import-Package>*</Import-Package>
 						<Bundle-Activator>org.escapek.ekcmdb.services.EKcmdbServicesActivator</Bundle-Activator>
 					</instructions>
@@ -57,6 +57,16 @@
 	</build>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.escapek.ekcmdb</groupId>
+			<artifactId>osgi-dependencies</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.escapek.ekcmdb</groupId>
+			<artifactId>core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 		<dependency>
 			<groupId>com.sun.jersey</groupId>
 			<artifactId>jersey-server</artifactId>
