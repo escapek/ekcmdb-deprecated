@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.0.0">
+	<feature name="ekcmdb" version="${pom.version}">
+		<feature version="2.2.0">http</feature>
+		<bundle>mvn:org.neo4j/neo4j/${neo4j.version}</bundle>		
+	</feature>
+</features>
