@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+	<bean id="neo4jConfig" class="org.escapek.ekcmdb.configuration.datasource.Neo4JDSConfiguration"  />
+	<service id="neo4jConfigService" ref="neo4jConfig" interface="org.osgi.service.cm.ManagedService">
+		<service-properties>
+			<entry key="service.pid">org.escapek.ekcmdb.configuration.datasource.Neo4J</entry>
+		</service-properties>
+	</service>
+</blueprint>

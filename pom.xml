@@ -142,6 +142,7 @@
 		<module>services-sample</module>
 		<module>osgi-dependencies</module>
 		<module>features</module>
+		<module>configuration-datasource-neo4j</module>
 	</modules>
 
 </project>
