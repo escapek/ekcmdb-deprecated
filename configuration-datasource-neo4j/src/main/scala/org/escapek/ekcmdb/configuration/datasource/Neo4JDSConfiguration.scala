@@ -11,9 +11,6 @@ class Neo4JDSConfiguration extends ManagedService with Logging {
 
 	var dataSource : AbstractGraphDatabase = _
 	
-	val trueRE = """TRUE|true|1""".r
-	val falseRE = """FALSE|false|0""".r
-	
 	val defaults = Map(
 			Neo4JDSConfiguration.EnableHA -> "false",
 			Neo4JDSConfiguration.storeDir -> defaultStoreDir)
@@ -37,19 +34,28 @@ class Neo4JDSConfiguration extends ManagedService with Logging {
 		//Get store location
 		val storeId : String = properties.get(Neo4JDSConfiguration.storeDir) match {
 			case s:String => s
-			case _ => ""
+			case _ =>  {
+				logger.warn("Property {} is not set. Using default : {}", 
+						Neo4JDSConfiguration.storeDir, defaults(Neo4JDSConfiguration.storeDir))
+				defaults(Neo4JDSConfiguration.storeDir)
+			}
 		}
 		require(!storeId.equals(""), "Neo4j store location is not set properly !")
 		
 		// Is High availability enabled ?
 		val enableHA : String = properties.get(Neo4JDSConfiguration.EnableHA) match {
 			case s:String => s
-			case _ => defaults(Neo4JDSConfiguration.EnableHA)
+			case _ => {
+				logger.warn("Property {} is not set. Using default : {}", 
+						Neo4JDSConfiguration.EnableHA, defaults(Neo4JDSConfiguration.EnableHA))
+				defaults(Neo4JDSConfiguration.EnableHA)
+			}
 		}
 		
+		val TrueRE = """(TRUE)|(true)|1""".r	
 		dataSource = enableHA match {
-			case falseRE => new EmbeddedGraphDatabase(storeId)
-			case trueRE => new HighlyAvailableGraphDatabase(storeId, extractProperties(properties).asJava)
+			case TrueRE => new HighlyAvailableGraphDatabase(storeId, extractProperties(properties).asJava)
+			case _ => new EmbeddedGraphDatabase(storeId)
 		}
 	}
 
@@ -64,11 +70,14 @@ class Neo4JDSConfiguration extends ManagedService with Logging {
 	}
 
 	/**
-	 * Extract Neo4J highly available database properties from bundle properties
+	 * Extract Neo4J highly available database properties from bundle properties.
+	 * Only properties begining with prefix <code>org.escapek.ekcmdb.datasource.neo4j</code> are kept
+	 * Prefix is removed from keys in the new map.
 	 */
 	private def extractProperties(properties: Dictionary[_,_]) : Map[String, String] = {
 		properties.asScala.
-			filterKeys{ case (key:String) => key.startsWith(Neo4JDSConfiguration.prefix + ".ha") }
+			filterKeys { case (key:String) => key.startsWith(Neo4JDSConfiguration.prefix + ".ha") }.
+			map { kv => ( kv._1.asInstanceOf[String], kv._2.asInstanceOf[String]) }
 		new HashMap[String,String]()
 	}
 }
