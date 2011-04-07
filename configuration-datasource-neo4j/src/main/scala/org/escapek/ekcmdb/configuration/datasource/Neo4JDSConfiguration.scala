@@ -32,8 +32,26 @@ class Neo4JDSConfiguration extends ManagedService with Logging {
 			//TODO : Shutdown previous datasource
 		}
 		val properties = PropertyTools.convertDictionary(dict)
+		
 		//Get store location
-		val storeId : String = properties.get(Neo4JDSConfiguration.storeDir) match {
+		val storeId = getStoreId(properties)
+		require(!storeId.equals(""), "Neo4j store location is not set properly !")
+		
+		// Is High availability enabled ?
+		val enableHA = getHAEnabled(properties)
+		
+		val TrueRE = """(TRUE)|(true)|1""".r	
+		dataSource = enableHA match {
+			case TrueRE => {
+				val neo4jProperties = PropertyTools.filterHashMap(Neo4JDSConfiguration.prefix, properties).asJava
+				new HighlyAvailableGraphDatabase(storeId, neo4jProperties)
+			}
+			case _ => new EmbeddedGraphDatabase(storeId)
+		}
+	}
+
+	private def getStoreId(properties : Map[String, String]) : String = {
+		properties.get(Neo4JDSConfiguration.storeDir) match {
 			case Some(s) => s
 			case _ =>  {
 				logger.warn("Property {} is not set. Using default : {}", 
@@ -41,10 +59,10 @@ class Neo4JDSConfiguration extends ManagedService with Logging {
 				defaults(Neo4JDSConfiguration.storeDir)
 			}
 		}
-		require(!storeId.equals(""), "Neo4j store location is not set properly !")
-		
-		// Is High availability enabled ?
-		val enableHA : String = properties.get(Neo4JDSConfiguration.EnableHA) match {
+	}
+	
+	private def getHAEnabled(properties : Map[String, String]) : String = {
+		properties.get(Neo4JDSConfiguration.EnableHA) match {
 			case Some(s) => s
 			case _ => {
 				logger.warn("Property {} is not set. Using default : {}", 
@@ -52,14 +70,8 @@ class Neo4JDSConfiguration extends ManagedService with Logging {
 				defaults(Neo4JDSConfiguration.EnableHA)
 			}
 		}
-		
-		val TrueRE = """(TRUE)|(true)|1""".r	
-		dataSource = enableHA match {
-			case TrueRE => new HighlyAvailableGraphDatabase(storeId, PropertyTools.filterHashMap(Neo4JDSConfiguration.prefix, properties).asJava)
-			case _ => new EmbeddedGraphDatabase(storeId)
-		}
 	}
-
+	
 	/**
 	 * Get default store directory from system property
 	 */
