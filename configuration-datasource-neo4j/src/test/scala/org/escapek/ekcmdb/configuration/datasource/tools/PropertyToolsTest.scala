@@ -1,4 +1,5 @@
 package org.escapek.ekcmdb.configuration.datasource.tools
+import java.{util => ju}
 
 import org.junit.Test
 import org.junit.Assert._
@@ -28,5 +29,11 @@ class PropertyToolsTest {
 	
 	@Test def filterHashMapKeyNameCut() = {
 		assert(filterHashMap("test.",testMap).forall { (kv) => kv._1.startsWith("key") } )
+	}
+	
+	@Test def convDictionary() = {
+		var dic = new ju.Hashtable[Any,Any]()
+		dic.put("key","value")
+		convertDictionary(dic)
 	}
 }

@@ -1,5 +1,6 @@
 package org.escapek.ekcmdb.configuration.datasource
 
+import org.escapek.ekcmdb.configuration.datasource.tools.PropertyTools
 import collection.JavaConverters._
 import scala.collection.immutable.HashMap
 import org.neo4j.kernel.HighlyAvailableGraphDatabase
@@ -15,7 +16,7 @@ class Neo4JDSConfiguration extends ManagedService with Logging {
 			Neo4JDSConfiguration.EnableHA -> "false",
 			Neo4JDSConfiguration.storeDir -> defaultStoreDir)
 	
-	def updated(properties: Dictionary[_,_]): Unit = { 
+	def updated(properties: Dictionary[_ <: Any,_ <: Any]): Unit = { 
 		properties match {
 			case null => logger.warn("Neo4j datasource configuration deleted !")
 			case _ => configureDS(properties)
@@ -25,15 +26,15 @@ class Neo4JDSConfiguration extends ManagedService with Logging {
 	/**
 	 * Configure Neo4j datasource based on the properties given
 	 */
-	private def configureDS(properties: Dictionary[_,_]): Unit = { 
-		if(properties != null )
+	private def configureDS(dict: Dictionary[_ <: Any,_ <: Any]): Unit = {
+		if(dict == null )
 		{
 			//TODO : Shutdown previous datasource
 		}
-		
+		val properties = PropertyTools.convertDictionary(dict)
 		//Get store location
 		val storeId : String = properties.get(Neo4JDSConfiguration.storeDir) match {
-			case s:String => s
+			case Some(s) => s
 			case _ =>  {
 				logger.warn("Property {} is not set. Using default : {}", 
 						Neo4JDSConfiguration.storeDir, defaults(Neo4JDSConfiguration.storeDir))
@@ -44,7 +45,7 @@ class Neo4JDSConfiguration extends ManagedService with Logging {
 		
 		// Is High availability enabled ?
 		val enableHA : String = properties.get(Neo4JDSConfiguration.EnableHA) match {
-			case s:String => s
+			case Some(s) => s
 			case _ => {
 				logger.warn("Property {} is not set. Using default : {}", 
 						Neo4JDSConfiguration.EnableHA, defaults(Neo4JDSConfiguration.EnableHA))
@@ -54,7 +55,7 @@ class Neo4JDSConfiguration extends ManagedService with Logging {
 		
 		val TrueRE = """(TRUE)|(true)|1""".r	
 		dataSource = enableHA match {
-			case TrueRE => new HighlyAvailableGraphDatabase(storeId, extractProperties(properties).asJava)
+			case TrueRE => new HighlyAvailableGraphDatabase(storeId, PropertyTools.filterHashMap(Neo4JDSConfiguration.prefix, properties).asJava)
 			case _ => new EmbeddedGraphDatabase(storeId)
 		}
 	}
@@ -67,18 +68,6 @@ class Neo4JDSConfiguration extends ManagedService with Logging {
 		if(prop == null)
 			logger.warn("System property " + Neo4JDSConfiguration.storeDir + " is not set")
 		prop
-	}
-
-	/**
-	 * Extract Neo4J highly available database properties from bundle properties.
-	 * Only properties begining with prefix <code>org.escapek.ekcmdb.datasource.neo4j</code> are kept
-	 * Prefix is removed from keys in the new map.
-	 */
-	private def extractProperties(properties: Dictionary[_,_]) : Map[String, String] = {
-		properties.asScala.
-			filterKeys { case (key:String) => key.startsWith(Neo4JDSConfiguration.prefix + ".ha") }.
-			map { kv => ( kv._1.asInstanceOf[String], kv._2.asInstanceOf[String]) }
-		new HashMap[String,String]()
 	}
 }
 
