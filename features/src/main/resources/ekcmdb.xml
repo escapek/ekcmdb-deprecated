@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features>
+	<feature name="neo4j" version="1.3-SNAPSHOT">
+		<bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.lucene/3.0.3_1</bundle>		
+		<bundle>mvn:org.escapek.osgi-bundles/javax-transaction-api/1.1</bundle>		
+		<bundle>mvn:org.neo4j/neo4j-kernel/${neo4j.version}</bundle>		
+ 		<bundle>mvn:org.neo4j/neo4j-lucene-index/1.3-SNAPSHOT</bundle>
+ 		<bundle>mvn:org.neo4j/neo4j-udc/1.3-SNAPSHOT</bundle>
+	</feature>
+	<feature name="ekcmdb" version="${pom.version}">
+		<feature version="2.2.0">http</feature>
+		<feature version="${neo4j.version}">neo4j</feature>
+	</feature>
+</features>
