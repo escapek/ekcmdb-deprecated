@@ -1,12 +1,11 @@
-package org.escapek.ekcmdb.configuration.datasource
+package org.escapek.ekcmdb.configuration.datasource.neo4j
 
-import org.escapek.ekcmdb.configuration.datasource.tools.PropertyTools
+import org.escapek.ekcmdb.configuration.datasource.internal.tools.PropertyTools
 import collection.JavaConverters._
 import scala.collection.immutable.HashMap
-import org.neo4j.kernel.HighlyAvailableGraphDatabase
 import org.escapek.ekcmdb.core.tools.Logging
 import java.util.Dictionary
-import org.neo4j.kernel.{AbstractGraphDatabase, EmbeddedGraphDatabase}
+import org.neo4j.kernel.{AbstractGraphDatabase, EmbeddedGraphDatabase, HighlyAvailableGraphDatabase}
 import org.osgi.service.cm.ManagedService
 class Neo4JDSConfiguration extends ManagedService with Logging {
 
@@ -42,10 +41,20 @@ class Neo4JDSConfiguration extends ManagedService with Logging {
 		
 		val TrueRE = """(TRUE)|(true)|1""".r	
 		dataSource = enableHA match {
+			//HA mode enabled
 			case TrueRE => {
 				val neo4jProperties = PropertyTools.filterHashMap(Neo4JDSConfiguration.prefix, properties).asJava
-				new HighlyAvailableGraphDatabase(storeId, neo4jProperties)
+				try {
+					new HighlyAvailableGraphDatabase(storeId, neo4jProperties)
+				}
+				catch {
+					case ncdfe : NoClassDefFoundError => {
+						logger.error("Neo4J HA bundle not found, switching to embedded mode.", ncdfe)
+						new EmbeddedGraphDatabase(storeId)
+					}
+				}
 			}
+			//HA mode disabled (default)
 			case _ => new EmbeddedGraphDatabase(storeId)
 		}
 	}

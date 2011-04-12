@@ -1,7 +1,7 @@
-package org.escapek.ekcmdb.configuration.datasource.tools
+package org.escapek.ekcmdb.configuration.datasource.internal.tools
 import java.util.Dictionary
 import scala.collection.JavaConverters._
-
+class PropertyTools {	}
 object PropertyTools {
 	/**
 	 * filter a map by keeping only elements which keys starts with the given prefix.

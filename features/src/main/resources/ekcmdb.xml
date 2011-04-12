@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <features>
+	<feature name="neo4j-ha" version="1.3-SNAPSHOT">
+		<bundle>mvn:org.jboss.netty/netty/3.2.4.Final</bundle>		
+		<bundle>mvn:org.apache.zookeeper/zookeeper/3.3.3</bundle>		
+		<bundle>mvn:org.neo4j/neo4j-com/${neo4j.version}</bundle>
+		<bundle>mvn:org.neo4j/neo4j-management/${neo4j.version}</bundle>
+		<bundle>mvn:org.neo4j/neo4j-ha/${neo4j.version}</bundle>		
+	</feature>
 	<feature name="neo4j" version="1.3-SNAPSHOT">
-		<bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.lucene/3.0.3_1</bundle>		
-		<bundle>mvn:org.escapek.osgi-bundles/javax-transaction-api/1.1</bundle>		
+		<feature>transaction</feature>
+		<feature>neo4j-ha</feature>		
+		<bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.lucene/3.0.3_1</bundle>
 		<bundle>mvn:org.neo4j/neo4j-kernel/${neo4j.version}</bundle>		
  		<bundle>mvn:org.neo4j/neo4j-lucene-index/1.3-SNAPSHOT</bundle>
  		<bundle>mvn:org.neo4j/neo4j-udc/1.3-SNAPSHOT</bundle>
 	</feature>
+	<feature name="scala" version="2.8.1">
+		<bundle>mvn:org.escapek.osgi-bundles/scala-runtime/2.8.1</bundle>
+	</feature>
 	<feature name="ekcmdb" version="${pom.version}">
 		<feature version="2.2.0">http</feature>
 		<feature version="${neo4j.version}">neo4j</feature>
+		<feature version="${scala.version}">scala</feature>
+		<bundle>mvn:org.escapek.ekcmdb/core/${pom.version}</bundle>
+		<bundle>mvn:org.escapek.ekcmdb/configuration-datasource-neo4j/${pom.version}</bundle>
 	</feature>
 </features>

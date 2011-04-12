@@ -1,4 +1,4 @@
-package org.escapek.ekcmdb.model.tools
+package org.escapek.ekcmdb.core.tools
 import java.util.UUID
 
 object UUIDGenerator {
