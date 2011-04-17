@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <features>
-	<feature name="neo4j-ha" version="1.3-SNAPSHOT">
-		<feature>neo4j</feature>		
+	<feature name="neo4j-ha" version="${neo4j.version}">
+		<feature>neo4j-community</feature>		
 		<bundle>mvn:org.jboss.netty/netty/3.2.4.Final</bundle>		
 		<bundle>mvn:org.apache.zookeeper/zookeeper/3.3.3</bundle>		
-		<bundle>mvn:org.neo4j/neo4j-com/${neo4j.version}</bundle>
+		<bundle>mvn:org.neo4j/neo4j-com/1.3-SNAPSHOT</bundle>
 		<bundle>mvn:org.escapek.osgi-bundles/jconsole/1.6</bundle>
-		<bundle>mvn:org.neo4j/neo4j-jmx/${neo4j.version}</bundle>
 		<bundle>mvn:org.neo4j/neo4j-management/${neo4j.version}</bundle>
 		<bundle>mvn:org.neo4j/neo4j-backup/${neo4j.version}</bundle>
-		<bundle>mvn:org.neo4j/neo4j-graph-algo/${neo4j.version}</bundle>
 		<bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.jline/0.9.94_1</bundle>
 		<bundle>mvn:org.neo4j/neo4j-shell/${neo4j.version}</bundle>
 		<bundle>mvn:org.neo4j/neo4j-ha/${neo4j.version}</bundle>		
 	</feature>
-	<feature name="neo4j" version="1.3-SNAPSHOT">
+	<feature name="neo4j-community" version="${neo4j.version}">
 		<bundle>mvn:org.escapek.osgi-bundles/javax-transaction-api/1.1</bundle>
 		<bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.lucene/3.0.3_1</bundle>
 		<bundle>mvn:org.neo4j/neo4j-kernel/${neo4j.version}</bundle>		
- 		<bundle>mvn:org.neo4j/neo4j-lucene-index/1.3-SNAPSHOT</bundle>
- 		<bundle>mvn:org.neo4j/neo4j-udc/1.3-SNAPSHOT</bundle>
+ 		<bundle>mvn:org.neo4j/neo4j-lucene-index/${neo4j.version}</bundle>
+		<bundle>mvn:org.neo4j/neo4j-graph-algo/${neo4j.version}</bundle>
+ 		<bundle>mvn:org.neo4j/neo4j-udc/${neo4j.version}</bundle>
+		<bundle>mvn:org.neo4j/neo4j-jmx/${neo4j.version}</bundle>
 	</feature>
 </features>
