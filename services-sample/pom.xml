@@ -20,6 +20,7 @@
 
 	<properties>
 		<jersey.version>1.5</jersey.version>
+		<bundle.namespace>org.escapek.ekcmdb.services</bundle.namespace>
 	</properties>
 
 	<build>
@@ -41,16 +42,6 @@
 			<plugin>
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
-				<extensions>true</extensions>
-				<configuration>
-	              	<manifestLocation>META-INF</manifestLocation>
-					<instructions>
-						<Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName>
-						<Export-Packages>org.escapek.ekcmdb.services</Export-Packages>
-						<Import-Package>*</Import-Package>
-						<Bundle-Activator>org.escapek.ekcmdb.services.SampleServicesActivator</Bundle-Activator>
-					</instructions>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>

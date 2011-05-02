@@ -16,7 +16,7 @@
 package org.escapek.ekcmdb.core.neo4j.internal.model
 
 import org.neo4j.graphdb._
-import org.escapek.ekcmdb.tools.neo4j.Neo4JWrapper
+import org.escapek.ekcmdb.core.neo4j.tools.Neo4JWrapper
 import scala.collection.JavaConversions._
 import org.escapek.ekcmdb.core.model.{EKNode, Property, CIClass, Schema}
 

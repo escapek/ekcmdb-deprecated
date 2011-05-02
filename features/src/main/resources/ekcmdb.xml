@@ -3,11 +3,11 @@
 	<feature name="scala" version="2.8.1">
 		<bundle>mvn:org.escapek.osgi-bundles/scala-runtime/2.8.1</bundle>
 	</feature>
-	<feature name="ekcmdb" version="${pom.version}">
+	<feature name="ekcmdb" version="${project.version}">
 		<feature version="2.2.0">http</feature>
 		<feature version="${neo4j.version}">neo4j</feature>
 		<feature version="${scala.version}">scala</feature>
 		<bundle>mvn:org.escapek.ekcmdb/core/${pom.version}</bundle>
-		<bundle>mvn:org.escapek.ekcmdb/configuration-datasource-neo4j/${pom.version}</bundle>
+		<bundle>mvn:org.escapek.ekcmdb/core-neo4j/${project.version}</bundle>
 	</feature>
 </features>

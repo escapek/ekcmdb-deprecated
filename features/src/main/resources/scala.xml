@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features>
+	<feature name="scala" version="2.8.1">
+		<bundle>mvn:org.escapek.osgi-bundles/scala-runtime/2.8.1</bundle>
+	</feature>
+</features>

@@ -151,12 +151,10 @@
 
 	<modules>
 		<module>core</module>
-		<module>model-neo4j</module>
-		<module>tools-neo4j</module>
+		<module>core-neo4j</module>
 		<module>services</module>
 		<module>services-common</module>
 		<module>services-sample</module>
-		<module>osgi-dependencies</module>
 		<module>features</module>
 	</modules>
 
