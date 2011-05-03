@@ -7,7 +7,11 @@
            
 	<bean id="graphDBConfig" class="org.escapek.ekcmdb.core.neo4j.GraphDBConfigurationService">
 		<property name="context" ref="blueprintBundleContext" />
+		<property name="eventAdmin" ref="eventAdminRef" />
 	</bean>
+	
+	<reference id="eventAdminRef" interface="org.osgi.service.event.EventAdmin" />
+	
 	<service id="graphDBConfigService" ref="graphDBConfig"
 		interface="org.osgi.service.cm.ManagedService">
 		<service-properties>
