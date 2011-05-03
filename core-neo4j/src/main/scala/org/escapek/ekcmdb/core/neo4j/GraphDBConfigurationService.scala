@@ -40,14 +40,14 @@ class GraphDBConfigurationService extends ManagedService with Logging
 		properties match
 		{
 			case null => logger.warn("Neo4j datasource configuration deleted !")
-			case _ => configureDS(properties)
+			case _ => configureGraphDB(properties)
 		}
 	}
 	
 	/**
-	 * Configure Neo4j datasource based on the properties given
+	 * Configure Neo4j datasource based on the properties given and publish it as an OSGi service
 	 */
-	private def configureDS(dict: Dictionary[_ <: Any,_ <: Any]): Unit = {
+	private def configureGraphDB(dict: Dictionary[_ <: Any,_ <: Any]): Unit = {
 		if(dict == null )
 		{
 			//TODO : Shutdown previous datasource
@@ -55,8 +55,8 @@ class GraphDBConfigurationService extends ManagedService with Logging
 		val properties = PropertyTools.convertDictionary(dict)
 		
 		//Get store location
-		val storeId = getStoreId(properties)
-		require(!storeId.equals(""), "Neo4j store location is not set properly !")
+		val storeDir = getStoreDir(properties)
+		require(!storeDir.equals(""), "Neo4j store location is not set properly !")
 		
 		// Is High availability enabled ?
 		val enableHA = getHAEnabled(properties)
@@ -69,17 +69,17 @@ class GraphDBConfigurationService extends ManagedService with Logging
 				try {
 					//new HighlyAvailableGraphDatabase(storeId, properties.asJava)
 					logger.warn("Neo4J HA graph database is currently not supported.")
-					new EmbeddedGraphDatabase(storeId)
+					new EmbeddedGraphDatabase(storeDir)
 				}
 				catch {
 					case ncdfe : NoClassDefFoundError => {
 						logger.error("Neo4J HA bundle not found, switching back to embedded mode.", ncdfe)
-						new EmbeddedGraphDatabase(storeId)
+						new EmbeddedGraphDatabase(storeDir)
 					}
 				}
 			}
 			//HA mode disabled (default)
-			case _ => new EmbeddedGraphDatabase(storeId)
+			case _ => new EmbeddedGraphDatabase(storeDir)
 		}
 		logger.info("Graph database successufully initialized.")
 		context.registerService(classOf[AbstractGraphDatabase].getName, dataSource, null)
@@ -87,7 +87,7 @@ class GraphDBConfigurationService extends ManagedService with Logging
 		
 	}
 
-	private def getStoreId(properties : Map[String, String]) : String = {
+	private def getStoreDir(properties : Map[String, String]) : String = {
 		properties.get(GraphDBConfigurationService.storeDir) match {
 			case Some(s) => s
 			case _ =>  {
