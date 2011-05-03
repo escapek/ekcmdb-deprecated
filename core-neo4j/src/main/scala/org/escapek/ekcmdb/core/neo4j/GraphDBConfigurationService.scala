@@ -21,17 +21,24 @@ import scala.collection.immutable.HashMap
 import org.escapek.ekcmdb.core.tools.Logging
 import java.util.Dictionary
 import org.neo4j.kernel.{AbstractGraphDatabase, EmbeddedGraphDatabase}
-import org.osgi.service.cm.ManagedService
-class Neo4JDSConfiguration extends ManagedService with Logging {
+import org.osgi.framework.BundleContext
+import org.osgi.service.cm.ManagedService
+
+class GraphDBConfigurationService extends ManagedService with Logging
+{
+  
+	@scala.reflect.BeanProperty
+	var context : BundleContext = _
 
 	var dataSource : AbstractGraphDatabase = _
 	
 	val defaults = Map(
-			Neo4JDSConfiguration.EnableHA -> "false",
-			Neo4JDSConfiguration.storeDir -> defaultStoreDir)
+			GraphDBConfigurationService.EnableHA -> "false",
+			GraphDBConfigurationService.storeDir -> defaultStoreDir)
 	
 	def updated(properties: Dictionary[_ <: Any,_ <: Any]): Unit = { 
-		properties match {
+		properties match
+		{
 			case null => logger.warn("Neo4j datasource configuration deleted !")
 			case _ => configureDS(properties)
 		}
@@ -58,15 +65,15 @@ class Neo4JDSConfiguration extends ManagedService with Logging {
 		dataSource = enableHA match {
 			//HA mode enabled
 			case TrueRE => {
-				val neo4jProperties = PropertyTools.filterHashMap(Neo4JDSConfiguration.prefix, properties).asJava
+				val neo4jProperties = PropertyTools.filterHashMap(GraphDBConfigurationService.pid, properties).asJava
 				try {
-					//new HighlyAvailableGraphDatabase(storeId, neo4jProperties)
+					//new HighlyAvailableGraphDatabase(storeId, properties.asJava)
 					logger.warn("Neo4J HA graph database is currently not supported.")
 					new EmbeddedGraphDatabase(storeId)
 				}
 				catch {
 					case ncdfe : NoClassDefFoundError => {
-						logger.error("Neo4J HA bundle not found, switching to embedded mode.", ncdfe)
+						logger.error("Neo4J HA bundle not found, switching back to embedded mode.", ncdfe)
 						new EmbeddedGraphDatabase(storeId)
 					}
 				}
@@ -74,26 +81,30 @@ class Neo4JDSConfiguration extends ManagedService with Logging {
 			//HA mode disabled (default)
 			case _ => new EmbeddedGraphDatabase(storeId)
 		}
+		logger.info("Graph database successufully initialized.")
+		context.registerService(classOf[AbstractGraphDatabase].getName, dataSource, null)
+		logger.info("Graph database service registered.")
+		
 	}
 
 	private def getStoreId(properties : Map[String, String]) : String = {
-		properties.get(Neo4JDSConfiguration.storeDir) match {
+		properties.get(GraphDBConfigurationService.storeDir) match {
 			case Some(s) => s
 			case _ =>  {
 				logger.warn("Property {} is not set. Using default : {}", 
-						Neo4JDSConfiguration.storeDir, defaults(Neo4JDSConfiguration.storeDir))
-				defaults(Neo4JDSConfiguration.storeDir)
+						GraphDBConfigurationService.storeDir, defaults(GraphDBConfigurationService.storeDir))
+				defaults(GraphDBConfigurationService.storeDir)
 			}
 		}
 	}
 	
 	private def getHAEnabled(properties : Map[String, String]) : String = {
-		properties.get(Neo4JDSConfiguration.EnableHA) match {
+		properties.get(GraphDBConfigurationService.EnableHA) match {
 			case Some(s) => s
 			case _ => {
 				logger.warn("Property {} is not set. Using default : {}", 
-						Neo4JDSConfiguration.EnableHA, defaults(Neo4JDSConfiguration.EnableHA))
-				defaults(Neo4JDSConfiguration.EnableHA)
+						GraphDBConfigurationService.EnableHA, defaults(GraphDBConfigurationService.EnableHA))
+				defaults(GraphDBConfigurationService.EnableHA)
 			}
 		}
 	}
@@ -102,15 +113,15 @@ class Neo4JDSConfiguration extends ManagedService with Logging {
 	 * Get default store directory from system property
 	 */
 	private def defaultStoreDir() :String = {
-		val prop = System.getProperty(Neo4JDSConfiguration.storeDir, "")
+		val prop = System.getProperty(GraphDBConfigurationService.storeDir, "")
 		if(prop == null)
-			logger.warn("System property " + Neo4JDSConfiguration.storeDir + " is not set")
+			logger.warn("System property " + GraphDBConfigurationService.storeDir + " is not set")
 		prop
 	}
 }
 
-object Neo4JDSConfiguration {
-	val prefix = "org.escapek.ekcmdb.core.neo4j.datasource"
-	val EnableHA = prefix + ".enable_ha"
-	val storeDir = prefix + ".store_dir"
+object GraphDBConfigurationService {
+	val pid = "org.escapek.ekcmdb.core.neo4j"
+	val EnableHA = "ha.enable"
+	val storeDir = "store.dir"
 }
