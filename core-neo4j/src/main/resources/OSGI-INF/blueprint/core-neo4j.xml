@@ -5,17 +5,23 @@
            xmlns:ext="http://aries.apache.org/blueprint/xmlns/blueprint-ext/v1.0.0"
            default-activation="lazy">
            
-	<bean id="graphDBConfig" class="org.escapek.ekcmdb.core.neo4j.GraphDBConfigurationService">
+	<bean id="graphDBLifecycle" class="org.escapek.ekcmdb.core.neo4j.GraphDBLifecycleService">
 		<property name="context" ref="blueprintBundleContext" />
 		<property name="eventAdmin" ref="eventAdminRef" />
 	</bean>
 	
 	<reference id="eventAdminRef" interface="org.osgi.service.event.EventAdmin" />
 	
-	<service id="graphDBConfigService" ref="graphDBConfig"
+	<service id="graphDBConfigService" ref="graphDBLifecycle"
 		interface="org.osgi.service.cm.ManagedService">
 		<service-properties>
 			<entry key="service.pid" value="org.escapek.ekcmdb.core.neo4j" />
 		</service-properties>
 	</service>
+	<service id="EKcmdbEventService" ref="grephLifecycle"
+		interface="org.osgi.service.event.EventHandler">
+		<service-properties>
+			<entry key="event.topics" calue="org/escapek/ekcmdb/core/ApplicationEvent/*"
+		</service-properties>
+	</service>	
 </blueprint>

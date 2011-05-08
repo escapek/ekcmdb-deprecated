@@ -15,6 +15,8 @@
  */
 package org.escapek.ekcmdb.core.neo4j
 
+import org.osgi.service.event.EventHandler
+import org.osgi.framework.BundleActivator
 import org.osgi.service.event.Event
 import org.osgi.service.event.EventAdmin
 import org.escapek.ekcmdb.core.neo4j.internal.tools.PropertyTools
@@ -26,32 +28,45 @@ import org.neo4j.kernel.{AbstractGraphDatabase, EmbeddedGraphDatabase}
 import org.osgi.framework.BundleContext
 import org.osgi.service.cm.ManagedService
 
-class GraphDBConfigurationService extends ManagedService with Logging
+class GraphDBLifecycleService extends ManagedService with EventHandler with Logging
 {
   
 	@scala.reflect.BeanProperty var context : BundleContext = _
-
 	@scala.reflect.BeanProperty var eventAdmin : EventAdmin = _
 
 	var dataSource : AbstractGraphDatabase = _
 	
 	val defaults = Map(
-			GraphDBConfigurationService.EnableHA -> "false",
-			GraphDBConfigurationService.storeDir -> defaultStoreDir)
+			GraphDBLifecycleService.EnableHA -> "false",
+			GraphDBLifecycleService.storeDir -> defaultStoreDir)
 	
+	/**
+	 * Handle graphDB configuration from incoming configuration from ConfigAdmin
+	 */
 	def updated(properties: Dictionary[_ <: Any,_ <: Any]): Unit = { 
 		properties match
 		{
-			case null => {
-				closeGraphDb(dataSource)
-				unregisterGraphDB(dataSource)
-				dataSource = null
-}
+			case null => shutdownGraphDB
 			case _ => { 
 			  dataSource = openGraphDB(properties)
 			  registerGraphDB(dataSource)
 			}
 		}
+	}
+	
+	/** 
+	 * Handle events sent from ekcmdb
+	 */
+	def handleEvent(event: Event) : Unit = {
+	  event.getTopic match {
+		  case "" => 
+		}
+	}
+	
+	private def shutdownGraphDB() = {
+	  unregisterGraphDB(dataSource)
+	  closeGraphDb(dataSource)
+	  dataSource = null
 	}
 	
 	/**
@@ -75,7 +90,7 @@ class GraphDBConfigurationService extends ManagedService with Logging
 		val db = enableHA match {
 			//HA mode enabled
 			case TrueRE => {
-				val neo4jProperties = PropertyTools.filterHashMap(GraphDBConfigurationService.pid, properties).asJava
+				val neo4jProperties = PropertyTools.filterHashMap(GraphDBLifecycleService.pid, properties).asJava
 				try {
 					//new HighlyAvailableGraphDatabase(storeId, properties.asJava)
 					logger.warn("Neo4J HA graph database is currently not supported.")
@@ -104,48 +119,50 @@ class GraphDBConfigurationService extends ManagedService with Logging
 	}
 
 	/**
-	 * Send SHUTDOWN_IN_PROGRESS event and unregister graph database from OSGi services
+	 * Send SHUTDOWN admin event and unregister graph database from OSGi services
 	 */
 	private def unregisterGraphDB(db: AbstractGraphDatabase) = {
 	    import java.util.HashMap
 		if(eventAdmin != null) {
-		  val event = new Event(GraphDBConfigurationService.eventTopic + "SHUTDOWN_IN_PROGRESS", new HashMap())
+		  import GraphDBLifecycleService._
+		  val event = new Event(Topic_shutdown, new HashMap())
 		  eventAdmin.sendEvent(event)
 		}
 	}
 
 	/**
-	 * register graph database as an OSGi service and sent a OPENED event admin
+	 * register graph database as an OSGi service and sent a OPEN event admin
 	 */
 	private def registerGraphDB(db: AbstractGraphDatabase) = {
 	    import java.util.HashMap
 
 		context.registerService(classOf[AbstractGraphDatabase].getName, db, null)
 		if(eventAdmin != null) {
-		  val event = new Event(GraphDBConfigurationService.eventTopic + "OPENED", new HashMap())
+		  import GraphDBLifecycleService._
+		  val event = new Event(Topic_Open, new HashMap())
 		  eventAdmin.postEvent(event)
 		}
 		logger.info("Graph database service registered.")
 	}
 	
 	private def getStoreDir(properties : Map[String, String]) : String = {
-		properties.get(GraphDBConfigurationService.storeDir) match {
+		properties.get(GraphDBLifecycleService.storeDir) match {
 			case Some(s) => s
 			case _ =>  {
 				logger.warn("Property {} is not set. Using default : {}", 
-						GraphDBConfigurationService.storeDir, defaults(GraphDBConfigurationService.storeDir))
-				defaults(GraphDBConfigurationService.storeDir)
+						GraphDBLifecycleService.storeDir, defaults(GraphDBLifecycleService.storeDir))
+				defaults(GraphDBLifecycleService.storeDir)
 			}
 		}
 	}
 	
 	private def getHAEnabled(properties : Map[String, String]) : String = {
-		properties.get(GraphDBConfigurationService.EnableHA) match {
+		properties.get(GraphDBLifecycleService.EnableHA) match {
 			case Some(s) => s
 			case _ => {
 				logger.warn("Property {} is not set. Using default : {}", 
-						GraphDBConfigurationService.EnableHA, defaults(GraphDBConfigurationService.EnableHA))
-				defaults(GraphDBConfigurationService.EnableHA)
+						GraphDBLifecycleService.EnableHA, defaults(GraphDBLifecycleService.EnableHA))
+				defaults(GraphDBLifecycleService.EnableHA)
 			}
 		}
 	}
@@ -154,16 +171,18 @@ class GraphDBConfigurationService extends ManagedService with Logging
 	 * Get default store directory from system property
 	 */
 	private def defaultStoreDir() :String = {
-		val prop = System.getProperty(GraphDBConfigurationService.storeDir, "")
+		val prop = System.getProperty(GraphDBLifecycleService.storeDir, "")
 		if(prop == null)
-			logger.warn("System property " + GraphDBConfigurationService.storeDir + " is not set")
+			logger.warn("System property " + GraphDBLifecycleService.storeDir + " is not set")
 		prop
 	}
 }
 
-object GraphDBConfigurationService {
+object GraphDBLifecycleService {
 	val pid = "org.escapek.ekcmdb.core.neo4j"
 	val EnableHA = "ha.enable"
 	val storeDir = "store.dir"
-	val eventTopic = "org/escapek/ekcmdb/core/neo4j/graphDB/"
+	val Namespace = "org/escapek/ekcmdb/core/GraphDBEvent/"
+	val Topic_Open = Namespace + "OPEN"
+	val Topic_shutdown = Namespace + "SHUTDOWN"
 }
