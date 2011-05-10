@@ -15,6 +15,9 @@
  */
 package org.escapek.ekcmdb.core.model
 
+/**
+ * Base trait for all model classes used in EscapeK.
+ */
 trait EKNode
 {
 	def id : Long

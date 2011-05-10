@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.escapek.ekcmdb.core.model
+package org.escapek.ekcmdb.cmdb.model
 
 /**
  * Created by IntelliJ IDEA.

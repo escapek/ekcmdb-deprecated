@@ -13,14 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.escapek.ekcmdb.core.model
+package org.escapek.ekcmdb.cmdb.model
 
-trait CIClass extends EKNode with NamedNode
-{
-	def schema : Schema
-	def isAbstract : Boolean
-	def isFinal : Boolean
-  def isAssociation : Boolean
-	def baseClass : Option[CIClass]
-	def properties : Set[Property]
+/**
+ * Created by IntelliJ IDEA.
+ * User: Jouanin
+ * Date: 04/03/11
+ * Time: 11:46
+ * To change this template use File | Settings | File Templates.
+ */
+
+import org.escapek.ekcmdb.core.model.EKNode
+
+trait InstanceProperty extends EKNode {
+  def definitionProperty : Property
 }

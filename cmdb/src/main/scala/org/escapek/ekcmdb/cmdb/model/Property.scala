@@ -13,17 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.escapek.ekcmdb.core.model
+package org.escapek.ekcmdb.cmdb.model
 
-/**
- * Created by IntelliJ IDEA.
- * User: Jouanin
- * Date: 04/03/11
- * Time: 11:45
- */
+import org.escapek.ekcmdb.cmdb.model.PropertyType._
+import org.escapek.ekcmdb.core.model.{EKNode,NamedNode}
 
-trait CIInstance extends EKNode
-{
-  def definitionClass : CIClass
-  def properties : Set[InstanceProperty]
+trait Property extends EKNode with NamedNode {
+	def defaultValue : String
+	def restrictions : String
+
+  /**
+   * Property cardinality.
+   * Can be something like 1, 0..1, 0..*, 1..*, 2..5, etc
+   */
+  def cardinality : String
+	def overrides : Option[Property]
+  def propertyType : PropertyType
+  def referencedClass : Option[CIClass]
 }

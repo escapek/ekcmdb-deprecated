@@ -24,7 +24,7 @@ import org.escapek.ekcmdb.core.model.NamedNode
  * Time: 17:36
  */
 
-trait NameNodeDao[T <: NamedNode]
+trait NamedNodeDao[T <: NamedNode]
 {
 
 }

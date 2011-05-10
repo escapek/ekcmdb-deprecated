@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.escapek.ekcmdb.core.neo4j.tools
+package org.escapek.ekcmdb.core.tools
 
 import org.neo4j.graphdb._
 

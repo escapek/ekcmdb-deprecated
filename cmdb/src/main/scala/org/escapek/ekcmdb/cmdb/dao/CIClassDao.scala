@@ -13,9 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.escapek.ekcmdb.core.dao
+package org.escapek.ekcmdb.cmdb.dao
 
-import org.escapek.ekcmdb.core.model.{Schema, CIClass}
+import org.escapek.ekcmdb.core.dao.NamedNodeDao
+import org.escapek.ekcmdb.core.dao.EKNodeDao
+import org.escapek.ekcmdb.cmdb.model.{Schema, CIClass}
 
 /**
  * Created by IntelliJ IDEA.
@@ -24,7 +26,7 @@ import org.escapek.ekcmdb.core.model.{Schema, CIClass}
  * Time: 15:48
  */
 
-trait CIClassDao extends EKNodeDao[CIClass] with NameNodeDao[CIClass]
+trait CIClassDao extends EKNodeDao[CIClass] with NamedNodeDao[CIClass]
 {
   def getByName(schema : Schema, className: String) : Option[CIClass]
   def findByName(className : String) : Set[CIClass]
