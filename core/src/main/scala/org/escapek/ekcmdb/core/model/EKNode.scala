@@ -29,9 +29,4 @@ trait EKNode {
    * Node Unique ID 
    */
   def id: Long
-  
-  /**
-   * Metadatas attached to this node instance
-   */
-  def metaData: Map[String, Object]
 }

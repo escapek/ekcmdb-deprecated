@@ -28,5 +28,7 @@ trait EKNodeDao[T <: EKNode]
 {
   def getById(id: Long) : Option[T]
   def getByName(name: String) : Option[T]
-  def addMetaData(node: T)
+  def getMetaData(ekNode: T) : Map[String, Any]
+  def getMetaData(ekNode: T, name : String)
+  def addMetaData(ekNode: T)
 }
