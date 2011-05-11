@@ -26,5 +26,6 @@ import org.escapek.ekcmdb.core.model.EKNode
 
 trait EKNodeDao[T <: EKNode]
 {
-  def getById(id:Long) : Option[T]
+  def getById(id: Long) : Option[T]
+  def getByName(name: String) : Option[T]
 }

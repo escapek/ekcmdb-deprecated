@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.escapek.ekcmdb.core.neo4j.internal.model
+package org.escapek.ekcmdb.core.model.impl
 
 import org.escapek.ekcmdb.core.model.{MetaData, EKNodeRelationships}
 import org.neo4j.graphdb.{Direction, Node}
@@ -38,6 +38,6 @@ class MetaDataImpl(val node:Node) extends MetaData with Neo4JWrapper
 
 object MetaDataImpl
 {
-  val className = "MetaData"
-  val Prop_value = className + ".value"
+  val propPrefix = "MetaData"
+  val Prop_value = propPrefix + ".value"
 }

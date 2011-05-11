@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.escapek.ekcmdb.core.neo4j.internal.model
-import org.neo4j.graphdb.{ Node, Direction }
+package org.escapek.ekcmdb.core.model.impl
+import org.neo4j.graphdb.{ Node, Direction }
 import scala.collection.JavaConversions._
 import org.escapek.ekcmdb.core.model.{ MetaData, EKNode, EKNodeRelationships }
 import org.escapek.ekcmdb.core.tools.Neo4JWrapper
@@ -27,43 +27,40 @@ abstract class EKNodeImpl(val node: Node) extends EKNode with Neo4JWrapper {
   if (!node.hasProperty(EKNodeImpl.Prop_nodeClass))
     nodeType = typeName
 
-  def nodeType =
-    {
-      node.getProperty(EKNodeImpl.Prop_nodeClass).asInstanceOf[String]
-    }
+  def nodeType = {
+    node.getProperty(EKNodeImpl.Prop_nodeClass).asInstanceOf[String]
+  }
 
   def nodeType_=(sType: String) {
     node.setProperty(EKNodeImpl.Prop_nodeClass, typeName)
   }
 
-  def id =
-    {
-      node.getId
-    }
-
-  override def version =
-    {
-      node.getProperty(EKNodeImpl.Prop_version).asInstanceOf[String]
-    }
-
-  def version_=(v: String) {
-    node.setProperty(EKNodeImpl.Prop_version, v)
+  def nodeName = {
+    node.getProperty(EKNodeImpl.Prop_nodeClass).asInstanceOf[String]
   }
 
-  def metaData =
-    {
-      val iterator =
-        node.getRelationships(EKNodeRelationships.Rel_EKNodeHasMetaData, Direction.OUTGOING).iterator
-      Map.empty[String, MetaData] ++
-        iterator.map(
-          r => (r(EKNodeRelationships.RelProp_EKNodeHasMetaData_name).asInstanceOf[String],
-            new MetaDataImpl(r.getEndNode())))
-    }
+  def nodeName_=(sType: String) {
+    node.setProperty(EKNodeImpl.Prop_nodeClass, typeName)
+  }
 
+  def id = {
+    node.getId
+  }
+
+  def metaData =  {
+    val iterator =
+      node.getRelationships(EKNodeRelationships.Rel_EKNodeHasMetaData, Direction.OUTGOING).iterator
+    Map.empty[String, MetaData] ++
+      iterator.map(
+        r => (r(EKNodeRelationships.RelProp_EKNodeHasMetaData_name).asInstanceOf[String],
+          new MetaDataImpl(r.getEndNode()))
+      )
+    }
 }
 
 object EKNodeImpl {
   val propPrefix = "EKNode"
   val Prop_nodeClass = propPrefix + ".nodeClass"
+  val Prop_nodeName = propPrefix + ".nodeName"
   val Prop_version = propPrefix + ".version"
 }

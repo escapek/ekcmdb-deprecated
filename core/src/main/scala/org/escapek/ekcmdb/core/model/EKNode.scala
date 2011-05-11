@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2011 njouanin - http://www.escapek.org/ - <EscapeK> 
+ * Copyright (C) 2011 njouanin - http://www.escapek.org/ - <EscapeK>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,9 +18,26 @@ package org.escapek.ekcmdb.core.model
 /**
  * Base trait for all model classes used in EscapeK.
  */
-trait EKNode
-{
-	def id : Long
-	def version : String
-	def metaData : Map[String, MetaData]
+trait EKNode {
+  /**
+   * Node Type.
+   * Each EKNode has a node type which can be mapped to a Scala class
+   */
+  def nodeType: String
+
+  /**
+   * Node name.
+   * A name identifying the node among all nodes of the same types.
+   */
+  def nodeName: String
+  
+  /**
+   * Node Unique ID 
+   */
+  def id: Long
+  
+  /**
+   * Metadatas attached to this node instance
+   */
+  def metaData: Map[String, MetaData]
 }
