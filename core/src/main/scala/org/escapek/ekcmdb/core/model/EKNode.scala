@@ -26,13 +26,6 @@ trait EKNode {
   def nodeType: String
 
   /**
-   * Node name.
-   * A name identifying the node among all nodes of the same types.
-   * Nodes may not have names, in case this property is not set
-   */
-  def nodeName: String
-  
-  /**
    * Node Unique ID 
    */
   def id: Long
@@ -40,5 +33,5 @@ trait EKNode {
   /**
    * Metadatas attached to this node instance
    */
-  def metaData: Map[String, MetaData]
+  def metaData: Map[String, Object]
 }

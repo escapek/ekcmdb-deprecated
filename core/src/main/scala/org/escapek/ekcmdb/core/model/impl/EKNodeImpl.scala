@@ -35,14 +35,6 @@ abstract class EKNodeImpl(val node: Node) extends EKNode with Neo4JWrapper {
     node.setProperty(EKNodeImpl.Prop_nodeClass, typeName)
   }
 
-  def nodeName = {
-    node.getProperty(EKNodeImpl.Prop_nodeClass).asInstanceOf[String]
-  }
-
-  def nodeName_=(sType: String) {
-    node.setProperty(EKNodeImpl.Prop_nodeClass, typeName)
-  }
-
   def id = {
     node.getId
   }
@@ -50,10 +42,10 @@ abstract class EKNodeImpl(val node: Node) extends EKNode with Neo4JWrapper {
   def metaData =  {
     val iterator =
       node.getRelationships(EKNodeRelationships.Rel_EKNodeHasMetaData, Direction.OUTGOING).iterator
-    Map.empty[String, MetaData] ++
+    Map.empty[String, Object] ++
       iterator.map(
         r => (r(EKNodeRelationships.RelProp_EKNodeHasMetaData_name).asInstanceOf[String],
-          new MetaDataImpl(r.getEndNode()))
+          r.getEndNode().getProperty(EKNodeImpl.Prop_metadataValue))
       )
     }
 }
@@ -63,4 +55,5 @@ object EKNodeImpl {
   val Prop_nodeClass = propPrefix + ".nodeClass"
   val Prop_nodeName = propPrefix + ".nodeName"
   val Prop_version = propPrefix + ".version"
+  val Prop_metadataValue = "Metadata.value"
 }

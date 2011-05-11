@@ -21,6 +21,10 @@ import org.escapek.ekcmdb.core.tools.Neo4JWrapper
 
 class MetaDataImpl(val node:Node) extends MetaData with Neo4JWrapper
 {
+  //Add nodeClass property for identifying nodes of type MetaData
+  if (!node.hasProperty(MetaDataImpl.Prop_nodeClass))
+    node.setProperty(MetaDataImpl.Prop_nodeClass, "MetaData")
+
   def name = {
     val incRel = node.getSingleRelationship(EKNodeRelationships.Rel_EKNodeHasMetaData,Direction.INCOMING)
     incRel(EKNodeRelationships.RelProp_EKNodeHasMetaData_name).asInstanceOf[String]
@@ -39,5 +43,6 @@ class MetaDataImpl(val node:Node) extends MetaData with Neo4JWrapper
 object MetaDataImpl
 {
   val propPrefix = "MetaData"
+  val Prop_nodeClass = propPrefix + ".nodeClass"
   val Prop_value = propPrefix + ".value"
 }

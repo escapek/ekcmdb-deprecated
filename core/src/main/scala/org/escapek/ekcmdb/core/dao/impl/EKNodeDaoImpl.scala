@@ -16,4 +16,8 @@ abstract class EKNodeDaoImpl[T <: EKNode](val db: GraphDatabaseService)(implicit
       case ex: NotFoundException => None
     }
   }
+  
+  def addMetaData(node: T) = {
+    //node.
+  }
 }
