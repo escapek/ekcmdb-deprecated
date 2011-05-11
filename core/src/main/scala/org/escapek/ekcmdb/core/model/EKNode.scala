@@ -21,13 +21,14 @@ package org.escapek.ekcmdb.core.model
 trait EKNode {
   /**
    * Node Type.
-   * Each EKNode has a node type which can be mapped to a Scala class
+   * Each EKNode has a node type which can be mapped to a Scala class.
    */
   def nodeType: String
 
   /**
    * Node name.
    * A name identifying the node among all nodes of the same types.
+   * Nodes may not have names, in case this property is not set
    */
   def nodeName: String
   
