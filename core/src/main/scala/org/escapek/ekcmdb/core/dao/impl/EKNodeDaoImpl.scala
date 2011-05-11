@@ -3,9 +3,10 @@ import org.escapek.ekcmdb.core.model.EKNode
 import org.neo4j.graphdb.{ NotFoundException, Node, GraphDatabaseService }
 import org.escapek.ekcmdb.core.dao.EKNodeDao
 
-abstract class EKNodeDaoImpl[T <: EKNode](val db: GraphDatabaseService) extends EKNodeDao[T] {
+abstract class EKNodeDaoImpl[T <: EKNode](val db: GraphDatabaseService)(implicit val node2T : Node => T)
+  extends EKNodeDao[T] {
 
-  implicit protected def fromNode(node: Node): T
+  //implicit protected def node2T(node: Node): T
 
   def getById(id: Long): Option[T] = {
     try {
