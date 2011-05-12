@@ -19,35 +19,27 @@ import scala.collection.JavaConversions._
 import org.escapek.ekcmdb.core.model.{ MetaData, EKNode, EKNodeRelationships }
 import org.escapek.ekcmdb.core.tools.Neo4JWrapper
 
-abstract class EKNodeImpl(val node: Node) extends EKNode with Neo4JWrapper {
-  require(node != null)
+abstract class EKNodeImpl(val aNode: Node) extends EKNode with Neo4JNodeContainer {
+
+  require(aNode != null)
+  override def baseNode = aNode
 
   def typeName: String
 
-  if (!node.hasProperty(EKNodeImpl.Prop_nodeClass))
+  if (!baseNode.hasProperty(EKNodeImpl.Prop_nodeClass))
     nodeType = typeName
 
   def nodeType = {
-    node.getProperty(EKNodeImpl.Prop_nodeClass).asInstanceOf[String]
+    baseNode.getProperty(EKNodeImpl.Prop_nodeClass).asInstanceOf[String]
   }
 
   def nodeType_=(sType: String) {
-    node.setProperty(EKNodeImpl.Prop_nodeClass, typeName)
+    baseNode.setProperty(EKNodeImpl.Prop_nodeClass, typeName)
   }
 
   def id = {
-    node.getId
+    baseNode.getId
   }
-
-  def metaData =  {
-    val iterator =
-      node.getRelationships(EKNodeRelationships.Rel_EKNodeHasMetaData, Direction.OUTGOING).iterator
-    Map.empty[String, Object] ++
-      iterator.map(
-        r => (r(EKNodeRelationships.RelProp_EKNodeHasMetaData_name).asInstanceOf[String],
-          r.getEndNode().getProperty(EKNodeImpl.Prop_metadataValue))
-      )
-    }
 }
 
 object EKNodeImpl {

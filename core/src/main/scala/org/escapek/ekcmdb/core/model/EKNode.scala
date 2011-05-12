@@ -18,7 +18,7 @@ package org.escapek.ekcmdb.core.model
 /**
  * Base trait for all model classes used in EscapeK.
  */
-trait EKNode {
+abstract class EKNode {
   /**
    * Node Type.
    * Each EKNode has a node type which can be mapped to a Scala class.

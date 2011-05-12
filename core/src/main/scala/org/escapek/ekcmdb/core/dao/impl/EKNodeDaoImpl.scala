@@ -10,17 +10,7 @@ abstract class EKNodeDaoImpl[T <: EKNode](val db: GraphDatabaseService)(implicit
 
   //implicit protected def node2T(node: Node): T
 
-  private def T2Node(ekNode : T) : Option[Node] = {
-    try {
-      Some(ekNode.asInstanceOf[EKNodeImpl].node)
-    }
-    catch {
-      case cce : ClassCastException => None
-    }
-  }
-  
-  
-  def getById(id: Long): Option[T] = {
+  override def getById(id: Long): Option[T] = {
     try {
       Some(db.getNodeById(id))
     }
@@ -28,29 +18,6 @@ abstract class EKNodeDaoImpl[T <: EKNode](val db: GraphDatabaseService)(implicit
       case ex: NotFoundException => None
     }
   }
-
-  def getMetaData(ekNode: T) : Map[String, Any] = {
-    T2Node(ekNode) match {
-      case Some(node: Node) => {
-        val iterator = node.getRelationships(EKNodeDaoImpl.Rel_EKNodeHasMetaData, Direction.OUTGOING).iterator
-        Map.empty[String, Any] ++ iterator.map( r => getMetaDataPair(r) )
-      }
-      case None => Map.empty[String, Any]
-    }
-  }
-
-  private def getMetaDataPair(r: Relationship) : (String, Any) = {
-    (r.getProperty(EKNodeDaoImpl.RelProp_EKNodeHasMetaData_name).asInstanceOf[String],
-     r.getEndNode().getProperty(EKNodeDaoImpl.NodeProp_MetaData_value))  
-  }
-  
-/*
-  def getMetaData(ekNode: T, name : String)
-    
-  def addMetaData(node: T) = {
-    node.asInstanceOf[EKNodeImpl].node
-  }
-*/  
 }
 
 object EKNodeDaoImpl {

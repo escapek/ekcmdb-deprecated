@@ -24,7 +24,7 @@ import org.escapek.ekcmdb.core.model.EKNode
  * Time: 16:48
  */
 
-trait EKNodeDao[T <: EKNode]
+abstract class EKNodeDao[T <: EKNode]
 {
   def getById(id: Long) : Option[T]
   def getByName(name: String) : Option[T]
