@@ -16,7 +16,7 @@
 package org.escapek.ekcmdb.cmdb.model
 
 import org.escapek.ekcmdb.cmdb.model.PropertyType._
-import org.escapek.ekcmdb.core.model.{EKNode,NamedNode}
+import org.escapek.ekcmdb.core.model.EKNode
 
 trait Property extends EKNode with NamedNode {
 	def defaultValue : String

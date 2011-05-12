@@ -15,7 +15,6 @@
  */
 package org.escapek.ekcmdb.cmdb.dao
 
-import org.escapek.ekcmdb.core.dao.NamedNodeDao
 import org.escapek.ekcmdb.core.dao.EKNodeDao
 import org.escapek.ekcmdb.cmdb.model.{Schema, CIClass}
 
@@ -26,7 +25,7 @@ import org.escapek.ekcmdb.cmdb.model.{Schema, CIClass}
  * Time: 15:48
  */
 
-trait CIClassDao extends EKNodeDao[CIClass] with NamedNodeDao[CIClass]
+abstract class CIClassDao extends EKNodeDao[CIClass]
 {
   def getByName(schema : Schema, className: String) : Option[CIClass]
   def findByName(className : String) : Set[CIClass]

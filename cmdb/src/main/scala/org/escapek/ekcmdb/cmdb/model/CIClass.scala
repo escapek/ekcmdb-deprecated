@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2011 njouanin - http://www.escapek.org/ - <EscapeK> 
+ * Copyright (C) 2011 njouanin - http://www.escapek.org/ - <EscapeK>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.escapek.ekcmdb.cmdb.model
-import org.escapek.ekcmdb.core.model.{EKNode,NamedNode}
+package org.escapek.ekcmdb.cmdb.model
 
-trait CIClass extends EKNode with NamedNode
-{
-	def schema : Schema
-	def isAbstract : Boolean
-	def isFinal : Boolean
-  def isAssociation : Boolean
-	def baseClass : Option[CIClass]
-	def properties : Set[Property]
+import org.escapek.ekcmdb.core.model.EKNode
+
+trait CIClass extends EKNode with NamedNode {
+  def schema: Schema
+  def isAbstract: Boolean
+  def isFinal: Boolean
+  def isAssociation: Boolean
+  def baseClass: Option[CIClass]
+  def properties: Set[Property]
 }
