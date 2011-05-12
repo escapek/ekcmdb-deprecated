@@ -8,6 +8,13 @@ import org.escapek.ekcmdb.core.model.impl.EKNodeImpl
 
 class MetaDataDaoImplTest {
 
+  class testNode(override val aNode:Node) extends EKNodeImpl(aNode) {
+    def nodeType = "testNode"
+  }
+  object testNodeDao extends EKNodeDaoImpl[testNode](graphDB)( (node : Node) => new testNode(node) ) {
+    def createNewInstance() = { new testNode(graphDB.createNode) }
+  }
+  
   var graphDB : GraphDatabaseService = _
 
   @Before
@@ -17,13 +24,6 @@ class MetaDataDaoImplTest {
   
   @Test
   def testAddMetaData() = {
-    class testNode(override val aNode:Node) extends EKNodeImpl(aNode) {
-      def typeName = "testNode"
-    }
-    
-    object testNodeDao extends EKNodeDaoImpl[testNode](graphDB)( (node : Node) => new testNode(node) ) {
-      def createNewInstance() = { new testNode(graphDB.createNode) }
-    }
     val metaDataDao = new MetaDataDaoImpl(graphDB)
     
     val tx = graphDB.beginTx

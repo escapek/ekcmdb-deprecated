@@ -24,18 +24,8 @@ abstract class EKNodeImpl(val aNode: Node) extends EKNode with Neo4JNodeContaine
   require(aNode != null)
   override def baseNode = aNode
 
-  def typeName: String
-
-  if (!baseNode.hasProperty(EKNodeImpl.Prop_nodeClass))
-    nodeType = typeName
-
-  def nodeType = {
-    baseNode.getProperty(EKNodeImpl.Prop_nodeClass).asInstanceOf[String]
-  }
-
-  def nodeType_=(sType: String) {
-    baseNode.setProperty(EKNodeImpl.Prop_nodeClass, typeName)
-  }
+  if (!baseNode.hasProperty(EKNodeImpl.Prop_nodeType))
+    baseNode.setProperty(EKNodeImpl.Prop_nodeType, nodeType)
 
   def id = {
     baseNode.getId
@@ -44,8 +34,7 @@ abstract class EKNodeImpl(val aNode: Node) extends EKNode with Neo4JNodeContaine
 
 object EKNodeImpl {
   val propPrefix = "EKNode"
-  val Prop_nodeClass = propPrefix + ".nodeClass"
+  val Prop_nodeType = propPrefix + ".nodeType"
   val Prop_nodeName = propPrefix + ".nodeName"
   val Prop_version = propPrefix + ".version"
-  val Prop_metadataValue = "Metadata.value"
 }
