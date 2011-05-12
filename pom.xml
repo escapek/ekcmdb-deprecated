@@ -57,6 +57,8 @@
 
 	<build>
 		<finalName>${project.groupId}.${project.artifactId}_${project.version}</finalName>
+		<sourceDirectory>src/main/scala</sourceDirectory>
+    <testSourceDirectory>src/test/scala</testSourceDirectory>
 		<pluginManagement>
 			<plugins>
 				<plugin>

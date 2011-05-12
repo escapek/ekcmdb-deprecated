@@ -22,8 +22,4 @@ abstract class EKNodeDaoImpl[T <: EKNode](val db: GraphDatabaseService)(implicit
 
 object EKNodeDaoImpl {
   import org.neo4j.graphdb.DynamicRelationshipType.withName
-
-  val Rel_EKNodeHasMetaData = withName("EKNODE_HAS_METADATA")
-  val RelProp_EKNodeHasMetaData_name = "metaData.name"
-  val NodeProp_MetaData_value = "metaData.value"
 }

@@ -31,8 +31,7 @@ abstract class EKNodeDaoImpl[T <: EKNode](val db : GraphDatabaseService) extends
 {
   protected def fromNode(node : Node) : T
 
-  def getById(id:Long) : Option[T] =
-  {
+  def getById(id:Long) : Option[T] = {
     try {
       Some(fromNode(db.getNodeById(id)))
     }

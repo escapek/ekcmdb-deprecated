@@ -18,8 +18,6 @@
 
 	<build>
 		<finalName>${project.groupId}.${project.artifactId}_${project.version}</finalName>
-		<sourceDirectory>src/main/scala</sourceDirectory>
-		<testSourceDirectory>src/test/scala</testSourceDirectory>
 		<plugins>
 			<plugin>
 				<groupId>org.scala-tools</groupId>
@@ -38,8 +36,8 @@
 			<artifactId>scala-library</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
+       <groupId>junit</groupId>
+       <artifactId>junit</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.neo4j</groupId>

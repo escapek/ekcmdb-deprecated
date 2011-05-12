@@ -5,9 +5,10 @@ import org.escapek.ekcmdb.core.model.{EKNode, MetaData}
 import org.escapek.ekcmdb.core.model.impl.EKNodeImpl
 import org.neo4j.graphdb.{ NotFoundException, Node, GraphDatabaseService, Direction, Relationship }
 import org.escapek.ekcmdb.core.dao.EKNodeDao
+import org.escapek.ekcmdb.core.dao.MetaDataDao
 import scala.collection.JavaConversions._
 
-class MetaDataDaoImpl(val db: GraphDatabaseService) {
+class MetaDataDaoImpl(val db: GraphDatabaseService) extends MetaDataDao {
   
   override def getMetaData(ekNode: EKNode): Set[MetaData] = {
     ekNode match {

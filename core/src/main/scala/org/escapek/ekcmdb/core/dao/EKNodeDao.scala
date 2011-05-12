@@ -27,8 +27,4 @@ import org.escapek.ekcmdb.core.model.EKNode
 abstract class EKNodeDao[T <: EKNode]
 {
   def getById(id: Long) : Option[T]
-  def getByName(name: String) : Option[T]
-  def getMetaData(ekNode: T) : Map[String, Any]
-  def getMetaData(ekNode: T, name : String)
-  def addMetaData(ekNode: T)
 }
