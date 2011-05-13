@@ -21,8 +21,10 @@ import org.escapek.ekcmdb.core.tools.Neo4JWrapper
 
 abstract class EKNodeImpl(val aNode: Node) extends EKNode with Neo4JNodeContainer {
 
+  override def nodeType: String
+
   require(aNode != null)
-  override def baseNode = aNode
+  def baseNode = aNode
 
   if (!baseNode.hasProperty(EKNodeImpl.Prop_nodeType))
     baseNode.setProperty(EKNodeImpl.Prop_nodeType, nodeType)

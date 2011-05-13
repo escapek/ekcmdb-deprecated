@@ -9,7 +9,7 @@ import org.escapek.ekcmdb.core.model.impl.EKNodeImpl
 class EKNodeDaoImplTest {
 
   class testNode(override val aNode:Node) extends EKNodeImpl(aNode) {
-    def nodeType = "testNode"
+    override def nodeType = "testNode"
     
     def someProperty = {
       baseNode.getProperty("someProperty").asInstanceOf[String]

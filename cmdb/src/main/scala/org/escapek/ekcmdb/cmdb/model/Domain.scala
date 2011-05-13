@@ -15,9 +15,7 @@
  */
 package org.escapek.ekcmdb.cmdb.model
 
-import org.escapek.ekcmdb.core.model.NamedNode
-
-trait Schema extends NamedNode
+trait Domain
 {
 	def content : Set[CIClass]
 }

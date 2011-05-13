@@ -15,7 +15,7 @@
  */
 package org.escapek.ekcmdb.core.model
 
-abstract class MetaData {
+trait MetaData {
   def key : String
   def value : Any
 }
