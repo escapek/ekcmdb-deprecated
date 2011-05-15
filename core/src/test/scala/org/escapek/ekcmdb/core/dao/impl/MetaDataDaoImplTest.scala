@@ -9,7 +9,7 @@ import org.escapek.ekcmdb.core.model.impl.EKNodeImpl
 class MetaDataDaoImplTest {
 
   class testNode(override val aNode:Node) extends EKNodeImpl(aNode) {
-    def nodeType = "testNode"
+    override def nodeType = "testNode"
   }
   object testNodeDao extends EKNodeDaoImpl[testNode](graphDB)( (node : Node) => new testNode(node) ) {
     def createNewInstance() = { new testNode(graphDB.createNode) }
