@@ -34,9 +34,13 @@ abstract class EKNodeImpl(val aNode: Node) extends EKNode with Neo4JNodeContaine
   }
 }
 
+import org.neo4j.graphdb.DynamicRelationshipType.withName
 object EKNodeImpl {
   val propPrefix = "EKNode"
   val Prop_nodeType = propPrefix + ".nodeType"
   val Prop_nodeName = propPrefix + ".nodeName"
   val Prop_version = propPrefix + ".version"
+  
+  //Relationships
+  val Rel_EKNodeHasMetaData = withName("EKNODE_HAS_METADATA")
 }

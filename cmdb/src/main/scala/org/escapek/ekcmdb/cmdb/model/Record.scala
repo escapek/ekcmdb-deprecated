@@ -15,16 +15,10 @@
  */
 package org.escapek.ekcmdb.cmdb.model
 
-/**
- * Created by IntelliJ IDEA.
- * User: Jouanin
- * Date: 04/03/11
- * Time: 11:46
- * To change this template use File | Settings | File Templates.
- */
-
-import org.escapek.ekcmdb.core.model.EKNode
-
-trait InstanceProperty extends EKNode {
-  def definitionProperty : Property
+trait Record {
+  def mdr: MDR
+  def item: Item
+  def recordID: String
+  def version: String
+  def recordType : RecordType
 }

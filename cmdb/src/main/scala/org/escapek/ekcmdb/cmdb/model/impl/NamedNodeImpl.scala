@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2011 njouanin - http://www.escapek.org/ - <EscapeK> 
+ * Copyright (C) 2011 njouanin - http://www.escapek.org/ - <EscapeK>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,19 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.escapek.ekcmdb.cmdb.model
+package org.escapek.ekcmdb.cmdb.model.impl
 
-/**
- * Created by IntelliJ IDEA.
- * User: Jouanin
- * Date: 04/03/11
- * Time: 11:45
- */
+import org.neo4j.graphdb.{ Node, Direction }
+import org.escapek.ekcmdb.cmdb.model.NamedNode
 
-import org.escapek.ekcmdb.core.model.EKNode
+trait NamedNodeImpl extends NamedNode {
+  def baseNode : Node
 
-trait CIInstance extends EKNode
-{
-  def definitionClass : CIClass
-  def properties : Set[InstanceProperty]
+  def key = {
+    baseNode.getProperty(NamedNodeImpl.Prop_name).asInstanceOf[String]
+  }
+
+  def key_=(v: String) = {
+    baseNode.setProperty(NamedNodeImpl.Prop_name, v)
+  }
+}
+
+object NamedNodeImpl {
+  val propPrefix = "NamedNode"
+  val Prop_name = propPrefix + ".name"
 }

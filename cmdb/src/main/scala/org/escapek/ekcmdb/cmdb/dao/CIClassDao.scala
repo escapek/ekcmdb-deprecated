@@ -16,7 +16,7 @@
 package org.escapek.ekcmdb.cmdb.dao
 
 import org.escapek.ekcmdb.core.dao.EKNodeDao
-import org.escapek.ekcmdb.cmdb.model.{Schema, CIClass}
+import org.escapek.ekcmdb.cmdb.model.{Domain, CIClass}
 
 /**
  * Created by IntelliJ IDEA.
@@ -27,7 +27,7 @@ import org.escapek.ekcmdb.cmdb.model.{Schema, CIClass}
 
 abstract class CIClassDao extends EKNodeDao[CIClass]
 {
-  def getByName(schema : Schema, className: String) : Option[CIClass]
+  def getByName(domain : Domain, className: String) : Option[CIClass]
   def findByName(className : String) : Set[CIClass]
 
 }

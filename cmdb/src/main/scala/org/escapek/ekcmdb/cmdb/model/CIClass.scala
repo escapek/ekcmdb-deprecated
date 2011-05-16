@@ -18,10 +18,8 @@ package org.escapek.ekcmdb.cmdb.model
 import org.escapek.ekcmdb.core.model.EKNode
 
 trait CIClass extends EKNode with NamedNode {
-  def schema: Schema
-  def isAbstract: Boolean
-  def isFinal: Boolean
+  def domain: Domain
   def isAssociation: Boolean
-  def baseClass: Option[CIClass]
+  def superClass: Option[CIClass]
   def properties: Set[Property]
 }

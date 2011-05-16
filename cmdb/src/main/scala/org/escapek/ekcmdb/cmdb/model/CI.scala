@@ -13,11 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.escapek.ekcmdb.core.model.impl
+package org.escapek.ekcmdb.cmdb.model
 
-import org.escapek.ekcmdb.core.tools.Neo4JWrapper
-import org.neo4j.graphdb.Node
-
-trait Neo4JNodeContainer extends Neo4JWrapper {
-  def baseNode : Node
+trait CI {
+  def mixedInClasses : Seq[CIClass]
+  def item : Item
 }
