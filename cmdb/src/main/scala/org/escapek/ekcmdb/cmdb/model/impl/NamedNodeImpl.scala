@@ -21,11 +21,11 @@ import org.escapek.ekcmdb.cmdb.model.NamedNode
 trait NamedNodeImpl extends NamedNode {
   def baseNode : Node
 
-  def key = {
+  def name = {
     baseNode.getProperty(NamedNodeImpl.Prop_name).asInstanceOf[String]
   }
 
-  def key_=(v: String) = {
+  def name_=(v: String) = {
     baseNode.setProperty(NamedNodeImpl.Prop_name, v)
   }
 }

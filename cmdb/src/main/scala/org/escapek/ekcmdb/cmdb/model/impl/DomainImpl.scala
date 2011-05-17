@@ -21,6 +21,8 @@ import org.neo4j.graphdb.{ Node, Direction }
 import scala.collection.JavaConversions._
 
 class DomainImpl(override val aNode: Node) extends EKNodeImpl(aNode) with NamedNodeImpl with Domain {
+  override def nodeType = "Domain"
+  
   def content = {
     val iterator = 
       baseNode.getRelationships(DomainImpl.Rel_ContainsCIClass, Direction.OUTGOING).iterator
