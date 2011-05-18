@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2011 njouanin - http://www.escapek.org/ - <EscapeK> 
+ * Copyright (C) 2011 njouanin - http://www.escapek.org/ - <EscapeK>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,12 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.escapek.ekcmdb.cmdb.model
+package org.escapek.ekcmdb.cmdb.domain
 
-trait Record {
-  def mdr: MDR
-  def item: Item
-  def recordID: String
-  def version: String
-  def recordType : RecordType
+import org.escapek.ekcmdb.cmdb.domain.PropertyType._
+import org.escapek.ekcmdb.core.domain.EKNode
+
+trait Property extends EKNode with NamedNode {
+  def defaultValue: String
+  def restrictions: String
+
+  /**
+   * Property cardinality.
+   * Can be something like 1, 0..1, 0..*, 1..*, 2..5, etc
+   */
+  def cardinality: String
+  def overrides: Option[Property]
+  def propertyType: PropertyType
+  def referencedClass: Option[CIClass]
 }

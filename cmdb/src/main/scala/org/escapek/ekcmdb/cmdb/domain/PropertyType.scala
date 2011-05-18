@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2011 njouanin - http://www.escapek.org/ - <EscapeK>
+ * Copyright (C) 2011 njouanin - http://www.escapek.org/ - <EscapeK> 
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,8 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.escapek.ekcmdb.cmdb.model
+package org.escapek.ekcmdb.cmdb.domain
 
-trait NamedNode {
-	def name: String
+/**
+ * Created by IntelliJ IDEA.
+ * User: Jouanin
+ * Date: 03/03/11
+ * Time: 16:53
+ */
+
+object PropertyType extends Enumeration {
+  type PropertyType = Value
+  
+  val Integer = Value
+  val Double = Value
+  val Boolean = Value
+  val String = Value
+  val Reference = Value
+  val DateTime = Value
 }

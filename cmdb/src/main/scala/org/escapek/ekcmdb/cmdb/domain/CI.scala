@@ -13,22 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.escapek.ekcmdb.cmdb.model.impl
+package org.escapek.ekcmdb.cmdb.domain
 
-import org.escapek.ekcmdb.core.model.impl.EKNodeImpl
-import org.escapek.ekcmdb.cmdb.model.{Domain, CIClass}
-import org.neo4j.graphdb.{ Node, Direction }
-
-class CIClassImpl(override val aNode:Node) extends EKNodeImpl(aNode) with NamedNodeImpl with CIClass {
-  override def nodeType = "CIClass"
-    
-  def domain = {
-    val ciClassNode = 
-      baseNode.getSingleRelationship(DomainImpl.Rel_ContainsCIClass, Direction.INCOMING).getEndNode 
-    new DomainImpl(ciClassNode)
-  }
-  
-  def properties = {
-    
-  }
+trait CI {
+  def mixedInClasses : Seq[CIClass]
+  def item : Item
 }

@@ -13,22 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.escapek.ekcmdb.cmdb.model
+package org.escapek.ekcmdb.cmdb.repository
+
+import org.escapek.ekcmdb.core.repository.EKNodeRepository
+import org.escapek.ekcmdb.cmdb.domain.{Domain, CIClass}
 
 /**
  * Created by IntelliJ IDEA.
  * User: Jouanin
- * Date: 03/03/11
- * Time: 16:53
+ * Date: 04/03/11
+ * Time: 15:48
  */
 
-object PropertyType extends Enumeration {
-  type PropertyType = Value
-  
-  val Integer = Value
-  val Double = Value
-  val Boolean = Value
-  val String = Value
-  val Reference = Value
-  val DateTime = Value
+abstract class CIClassRepository extends EKNodeRepository[CIClass]
+{
+  def getByName(domain : Domain, className: String) : Option[CIClass]
+  def findByName(className : String) : Set[CIClass]
+
 }

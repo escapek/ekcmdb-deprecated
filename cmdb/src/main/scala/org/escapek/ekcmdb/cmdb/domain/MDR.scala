@@ -13,24 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.escapek.ekcmdb.cmdb.model.impl
+package org.escapek.ekcmdb.cmdb.domain
 
-import org.neo4j.graphdb.{ Node, Direction }
-import org.escapek.ekcmdb.cmdb.model.NamedNode
-
-trait NamedNodeImpl extends NamedNode {
-  def baseNode : Node
-
-  def name = {
-    baseNode.getProperty(NamedNodeImpl.Prop_name).asInstanceOf[String]
-  }
-
-  def name_=(v: String) = {
-    baseNode.setProperty(NamedNodeImpl.Prop_name, v)
-  }
-}
-
-object NamedNodeImpl {
-  val propPrefix = "NamedNode"
-  val Prop_name = propPrefix + ".name"
+trait MDR {
+  def mdrID : String
 }

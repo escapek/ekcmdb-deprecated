@@ -13,10 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.escapek.ekcmdb.cmdb.model
+package org.escapek.ekcmdb.cmdb.domain
 
-trait ItemScope {
-	def mdr : MDR
-	def item : Item
-	def mdrAssignedID : String
+trait Domain extends NamedNode
+{
+	def content : Set[CIClass]
 }

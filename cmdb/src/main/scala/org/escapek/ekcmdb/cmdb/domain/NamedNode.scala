@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2011 njouanin - http://www.escapek.org/ - <EscapeK> 
+ * Copyright (C) 2011 njouanin - http://www.escapek.org/ - <EscapeK>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,21 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.escapek.ekcmdb.cmdb.dao
+package org.escapek.ekcmdb.cmdb.domain
 
-import org.escapek.ekcmdb.core.dao.EKNodeDao
-import org.escapek.ekcmdb.cmdb.model.{Domain, CIClass}
-
-/**
- * Created by IntelliJ IDEA.
- * User: Jouanin
- * Date: 04/03/11
- * Time: 15:48
- */
-
-abstract class CIClassDao extends EKNodeDao[CIClass]
-{
-  def getByName(domain : Domain, className: String) : Option[CIClass]
-  def findByName(className : String) : Set[CIClass]
-
+trait NamedNode {
+	def name: String
 }

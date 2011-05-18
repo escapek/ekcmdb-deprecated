@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2011 njouanin - http://www.escapek.org/ - <EscapeK>
+ * Copyright (C) 2011 njouanin - http://www.escapek.org/ - <EscapeK> 
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,8 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.escapek.ekcmdb.cmdb.model
+package org.escapek.ekcmdb.cmdb.domain
 
-trait Item {
-  def UID : String
+trait Record {
+  def mdr: MDR
+  def item: Item
+  def recordID: String
+  def version: String
+  def recordType : RecordType
 }

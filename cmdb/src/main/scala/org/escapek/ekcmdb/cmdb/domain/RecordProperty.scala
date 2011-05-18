@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.escapek.ekcmdb.cmdb.model
+package org.escapek.ekcmdb.cmdb.domain
 
-trait RecordType {
-  def mdr: MDR
-  def localName: String
+trait RecordProperty {
+  def record: Record
+  def propertyType: RecordTypeProperty
 }

@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.escapek.ekcmdb.cmdb.model.impl
+package org.escapek.ekcmdb.cmdb.domain.impl
 
-import org.escapek.ekcmdb.core.model.impl.EKNodeImpl
-import org.escapek.ekcmdb.cmdb.model.{ Domain, CIClass }
+import org.escapek.ekcmdb.core.domain.impl.EKNodeImpl
+import org.escapek.ekcmdb.cmdb.domain.{ Domain, CIClass }
 import org.neo4j.graphdb.{ Node, Direction }
 import scala.collection.JavaConversions._
 

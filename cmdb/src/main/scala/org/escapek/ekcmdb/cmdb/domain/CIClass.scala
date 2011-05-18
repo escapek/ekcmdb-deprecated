@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.escapek.ekcmdb.cmdb.model
+package org.escapek.ekcmdb.cmdb.domain
 
-import org.escapek.ekcmdb.core.model.EKNode
+import org.escapek.ekcmdb.core.domain.EKNode
 
 trait CIClass extends EKNode with NamedNode {
   def domain: Domain
