@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.escapek.ekcmdb.core.model
+package org.escapek.ekcmdb.core.domain
 
 /**
- * Base trait for all model classes used in EscapeK.
+ * Base trait for all domain classes used in EscapeK.
  */
 trait EKNode {
   /**

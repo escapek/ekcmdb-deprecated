@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.escapek.ekcmdb.core.dao
+package org.escapek.ekcmdb.core.repository
 
-import org.escapek.ekcmdb.core.model.EKNode
+import org.escapek.ekcmdb.core.domain.EKNode
 
 /**
  * Created by IntelliJ IDEA.
@@ -24,7 +24,7 @@ import org.escapek.ekcmdb.core.model.EKNode
  * Time: 16:48
  */
 
-abstract class EKNodeDao[T <: EKNode]
+abstract class EKNodeRepository[T <: EKNode]
 {
   def getById(id: Long) : Option[T]
 }

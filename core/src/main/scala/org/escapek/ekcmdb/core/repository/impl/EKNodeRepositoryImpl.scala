@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.escapek.ekcmdb.core.dao.impl
-import org.escapek.ekcmdb.core.model.EKNode
-import org.escapek.ekcmdb.core.model.impl.EKNodeImpl
+package org.escapek.ekcmdb.core.repository.impl
+import org.escapek.ekcmdb.core.domain.EKNode
+import org.escapek.ekcmdb.core.domain.impl.EKNodeImpl
 import org.neo4j.graphdb.{ NotFoundException, Node, GraphDatabaseService, Direction, Relationship }
-import org.escapek.ekcmdb.core.dao.EKNodeDao
+import org.escapek.ekcmdb.core.repository.EKNodeRepository
 import scala.collection.JavaConversions._
 
-abstract class EKNodeDaoImpl[T <: EKNode](val db: GraphDatabaseService)(implicit val node2T : Node => T)
-  extends EKNodeDao[T] {
+abstract class EKNodeRepositoryImpl[T <: EKNode](val db: GraphDatabaseService)(implicit val node2T : Node => T)
+  extends EKNodeRepository[T] {
 
   //implicit protected def node2T(node: Node): T
 

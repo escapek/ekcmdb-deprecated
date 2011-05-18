@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.escapek.ekcmdb.core.model.impl
+package org.escapek.ekcmdb.core.domain.impl
 
-import org.escapek.ekcmdb.core.model.{MetaData, EKNodeRelationships}
+import org.escapek.ekcmdb.core.domain.MetaData
 import org.neo4j.graphdb.{Direction, Node}
 import org.escapek.ekcmdb.core.tools.Neo4JWrapper
 

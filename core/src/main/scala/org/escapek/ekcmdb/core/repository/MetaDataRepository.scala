@@ -13,11 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.escapek.ekcmdb.core.model.impl
+package org.escapek.ekcmdb.core.repository
 
-import org.escapek.ekcmdb.core.tools.Neo4JWrapper
-import org.neo4j.graphdb.Node
+import org.escapek.ekcmdb.core.domain.EKNode
+import org.escapek.ekcmdb.core.domain.MetaData
 
-trait Neo4JNodeContainer extends Neo4JWrapper {
-  def baseNode : Node
+abstract class MetaDataRepository {
+  def getMetaData(ekNode: EKNode): Set[MetaData]
+  def getMetaData(ekNode: EKNode, name: String): Option[MetaData]
+  def addMetaData(ekNode: EKNode, name: String, value: Any): Option[MetaData]
 }

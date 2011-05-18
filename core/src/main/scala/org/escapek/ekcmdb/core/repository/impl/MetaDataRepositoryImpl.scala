@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.escapek.ekcmdb.core.dao.impl
-import org.escapek.ekcmdb.core.model.impl.Neo4JNodeContainer
-import org.escapek.ekcmdb.core.model.impl.MetaDataImpl
-import org.escapek.ekcmdb.core.model.{EKNode, MetaData}
-import org.escapek.ekcmdb.core.model.impl.EKNodeImpl
+package org.escapek.ekcmdb.core.repository.impl
+import org.escapek.ekcmdb.core.domain.impl.Neo4JNodeContainer
+import org.escapek.ekcmdb.core.domain.impl.MetaDataImpl
+import org.escapek.ekcmdb.core.domain.{EKNode, MetaData}
+import org.escapek.ekcmdb.core.domain.impl.EKNodeImpl
 import org.neo4j.graphdb.{ NotFoundException, Node, GraphDatabaseService, Direction, Relationship }
-import org.escapek.ekcmdb.core.dao.EKNodeDao
-import org.escapek.ekcmdb.core.dao.MetaDataDao
+import org.escapek.ekcmdb.core.repository.EKNodeRepository
+import org.escapek.ekcmdb.core.repository.MetaDataRepository
 import scala.collection.JavaConversions._
 
-class MetaDataDaoImpl(val db: GraphDatabaseService) extends MetaDataDao {
+class MetaDataRepositoryImpl(val db: GraphDatabaseService) extends MetaDataRepository {
   
   override def getMetaData(ekNode: EKNode): Set[MetaData] = {
     ekNode match {

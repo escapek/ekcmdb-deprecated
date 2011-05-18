@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.escapek.ekcmdb.core.model.impl
+package org.escapek.ekcmdb.core.domain.impl
 import org.neo4j.graphdb.{ Node, Direction }
 import scala.collection.JavaConversions._
-import org.escapek.ekcmdb.core.model.{ MetaData, EKNode, EKNodeRelationships }
+import org.escapek.ekcmdb.core.domain.{ MetaData, EKNode }
 import org.escapek.ekcmdb.core.tools.Neo4JWrapper
 
 abstract class EKNodeImpl(val aNode: Node) extends EKNode with Neo4JNodeContainer {
