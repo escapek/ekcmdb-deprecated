@@ -169,11 +169,11 @@
 	<modules>
 		<module>core</module>
 		<module>cmdb</module>
-		<module>core-neo4j</module>
 		<module>services</module>
 		<module>services-common</module>
 		<module>services-sample</module>
 		<module>features</module>
+		<module>federation</module>
 	</modules>
 
 </project>

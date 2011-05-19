@@ -13,9 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.escapek.ekcmdb.cmdb.domain
+package org.escapek.ekcmdb.federation.domain
 
-trait RecordTypeProperty {
-  def localName : String
-  def mappedProperty: Property
+trait ItemScope {
+	def mdr : MDR
+	def item : Item
+	def mdrAssignedID : String
 }

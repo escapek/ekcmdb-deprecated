@@ -29,6 +29,17 @@ class CIClassImpl(override val aNode:Node) extends EKNodeImpl(aNode) with NamedN
   }
   
   def properties = {
-    
+    Set.empty
   }
+  
+  def isAssociation: Boolean = {
+    //TODO
+    false
+  }
+  
+  def superClass: Option[CIClass] = {
+    //TODO
+    None
+  }
+
 }

@@ -12,6 +12,10 @@
   <name>${project.artifactId}</name>
   <packaging>bundle</packaging>
 
+	<properties>
+		<bundle.namespace>org.escapek.ekcmdb.cmdb</bundle.namespace>
+	</properties>
+
   <build>
     <sourceDirectory>src/main/scala</sourceDirectory>
     <testSourceDirectory>src/test/scala</testSourceDirectory>

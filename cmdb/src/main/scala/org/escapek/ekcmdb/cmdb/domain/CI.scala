@@ -17,5 +17,4 @@ package org.escapek.ekcmdb.cmdb.domain
 
 trait CI {
   def mixedInClasses : Seq[CIClass]
-  def item : Item
 }

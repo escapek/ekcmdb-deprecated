@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2011 njouanin - http://www.escapek.org/ - <EscapeK>
+ * Copyright (C) 2011 njouanin - http://www.escapek.org/ - <EscapeK> 
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,8 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.escapek.ekcmdb.cmdb.domain
+package org.escapek.ekcmdb.federation.domain
 
-trait Item {
-  def UID : String
+import org.escapek.ekcmdb.cmdb.domain.Property
+
+trait RecordTypeProperty {
+  def localName : String
+  def mappedProperty: Property
 }
