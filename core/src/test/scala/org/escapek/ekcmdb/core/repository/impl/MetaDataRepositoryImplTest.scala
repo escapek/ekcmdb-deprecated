@@ -1,12 +1,10 @@
-package org.escapek.ekcmdb.core.dao.impl
+package org.escapek.ekcmdb.core.repository.impl
 
 import org.junit._
 import org.neo4j.kernel.EmbeddedGraphDatabase
 import org.neo4j.graphdb.{GraphDatabaseService, Node}
 import org.escapek.ekcmdb.core.domain.EKNode
 import org.escapek.ekcmdb.core.domain.impl.EKNodeImpl
-import org.escapek.ekcmdb.core.repository.impl.EKNodeRepositoryImpl
-import org.escapek.ekcmdb.core.repository.impl.MetaDataRepositoryImpl
 
 class MetaDataDaoImplTest {
 
