@@ -15,6 +15,7 @@ class DomainRepositoryImpl(override val db: GraphDatabaseService) extends EKNode
 
   def create(domainName: String) : Domain = {
     val domain = createNewInstance
+    domain.name = domainName
     domain
   }
 }

@@ -36,8 +36,8 @@
 			<artifactId>scala-library</artifactId>
 		</dependency>
 		<dependency>
-       <groupId>junit</groupId>
-       <artifactId>junit</artifactId>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.neo4j</groupId>

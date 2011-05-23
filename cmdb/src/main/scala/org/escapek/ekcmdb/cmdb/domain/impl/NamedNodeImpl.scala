@@ -25,8 +25,8 @@ trait NamedNodeImpl extends NamedNode {
     baseNode.getProperty(NamedNodeImpl.Prop_name).asInstanceOf[String]
   }
 
-  def name_=(v: String) = {
-    baseNode.setProperty(NamedNodeImpl.Prop_name, v)
+  def name_=(n: String) = {
+    baseNode.setProperty(NamedNodeImpl.Prop_name, n)
   }
 }
 

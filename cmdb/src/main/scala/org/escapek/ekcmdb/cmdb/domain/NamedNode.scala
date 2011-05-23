@@ -16,5 +16,7 @@
 package org.escapek.ekcmdb.cmdb.domain
 
 trait NamedNode {
-	def name: String
+  def name: String
+	
+  def name_=(n: String)
 }
