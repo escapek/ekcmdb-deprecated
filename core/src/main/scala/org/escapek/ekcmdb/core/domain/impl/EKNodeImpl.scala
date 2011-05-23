@@ -23,24 +23,21 @@ abstract class EKNodeImpl(val aNode: Node) extends EKNode with Neo4JNodeContaine
 
   override def nodeType: String
 
-  require(aNode != null)
-  def baseNode = aNode
+  //Require given node is not null for property mapping
+  require(aNode != null, "Neo4J node used for mapping can not be null")
+  override def baseNode = aNode
 
-  if (!baseNode.hasProperty(EKNodeImpl.Prop_nodeType))
-    baseNode.setProperty(EKNodeImpl.Prop_nodeType, nodeType)
+  //Require given node is not already used by another object
+  require( !baseNode.hasProperty(EKNodeImpl.Prop_nodeType), 
+      "Neo4J node used for mapping is already assigned to another object" )
+  baseNode.setProperty(EKNodeImpl.Prop_nodeType, nodeType)
 
   def id = {
     baseNode.getId
   }
 }
 
-import org.neo4j.graphdb.DynamicRelationshipType.withName
 object EKNodeImpl {
   val propPrefix = "EKNode"
   val Prop_nodeType = propPrefix + ".nodeType"
-  val Prop_nodeName = propPrefix + ".nodeName"
-  val Prop_version = propPrefix + ".version"
-  
-  //Relationships
-  val Rel_EKNodeHasMetaData = withName("EKNODE_HAS_METADATA")
 }

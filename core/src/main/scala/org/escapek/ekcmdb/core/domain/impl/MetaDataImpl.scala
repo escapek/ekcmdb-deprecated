@@ -21,12 +21,14 @@ import org.escapek.ekcmdb.core.tools.Neo4JWrapper
 
 class MetaDataImpl(val aNode:Node) extends MetaData with Neo4JNodeContainer
 {
-  require(aNode != null)
+  //Require given node is not null for property mapping
+  require(aNode != null, "Neo4J node used for mapping can not be null")
   override def baseNode = aNode
 
-  //Add nodeClass property for identifying nodes of type MetaData
-  if (!baseNode.hasProperty(MetaDataImpl.Prop_nodeClass))
-    baseNode.setProperty(MetaDataImpl.Prop_nodeClass, "MetaData")
+  //Require given node is not already used by another object
+  require( !baseNode.hasProperty(MetaDataImpl.Prop_nodeType), 
+      "Neo4J node used for mapping is already assigned to another object" )
+  baseNode.setProperty(MetaDataImpl.Prop_nodeType, "MetaData")
 
   def key = {
     baseNode.getProperty(MetaDataImpl.Prop_key).asInstanceOf[String]
@@ -49,7 +51,7 @@ class MetaDataImpl(val aNode:Node) extends MetaData with Neo4JNodeContainer
 object MetaDataImpl
 {
   val propPrefix = "MetaData"
-  val Prop_nodeClass = propPrefix + ".nodeClass"
+  val Prop_nodeType = propPrefix + ".nodeType"
   val Prop_key = propPrefix + ".key"
   val Prop_value = propPrefix + ".value"
 }

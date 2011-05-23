@@ -14,31 +14,28 @@
  * limitations under the License.
  */
 package org.escapek.ekcmdb.core.repository.impl
-import org.escapek.ekcmdb.core.domain.impl.Neo4JNodeContainer
-import org.escapek.ekcmdb.core.domain.impl.MetaDataImpl
+import org.escapek.ekcmdb.core.domain.impl.{MetaDataImpl, Neo4JNodeContainer}
 import org.escapek.ekcmdb.core.domain.{EKNode, MetaData}
-import org.escapek.ekcmdb.core.domain.impl.EKNodeImpl
-import org.neo4j.graphdb.{ NotFoundException, Node, GraphDatabaseService, Direction, Relationship }
-import org.escapek.ekcmdb.core.repository.EKNodeRepository
 import org.escapek.ekcmdb.core.repository.MetaDataRepository
+import org.neo4j.graphdb.{Node, GraphDatabaseService, Direction, Relationship}
 import scala.collection.JavaConversions._
 
 class MetaDataRepositoryImpl(val db: GraphDatabaseService) extends MetaDataRepository {
   
-  override def getMetaData(ekNode: EKNode): Set[MetaData] = {
+  override def findMetaData(ekNode: EKNode): Set[MetaData] = {
     ekNode match {
       case nodeContainer : Neo4JNodeContainer => {
         val neo4jNode = nodeContainer.baseNode
         val iterator = 
-          neo4jNode.getRelationships(EKNodeImpl.Rel_EKNodeHasMetaData, Direction.OUTGOING).iterator
+          neo4jNode.getRelationships(Relationships.Rel_EKNodeHasMetaData, Direction.OUTGOING).iterator
         Set.empty[MetaData] ++ iterator.map( r => new MetaDataImpl(r.getEndNode()) )
       }
       case _ => Set.empty[MetaData]
     }
   }
 
-  override def getMetaData(ekNode: EKNode, name: String): Option[MetaData] = {
-    getMetaData(ekNode).filter( _.key.equals(name) ).headOption
+  override def findMetaData(ekNode: EKNode, name: String): Option[MetaData] = {
+    findMetaData(ekNode).filter( _.key.equals(name) ).headOption
   }
     
   override def addMetaData(ekNode: EKNode, name: String, value: Any): Option[MetaData] = {
@@ -47,7 +44,7 @@ class MetaDataRepositoryImpl(val db: GraphDatabaseService) extends MetaDataRepos
         val newMeta = new MetaDataImpl(db.createNode)
         newMeta.key = name
         newMeta.value = value
-        ekNodeContainer.baseNode.createRelationshipTo(newMeta.baseNode, EKNodeImpl.Rel_EKNodeHasMetaData)
+        ekNodeContainer.baseNode.createRelationshipTo(newMeta.baseNode, Relationships.Rel_EKNodeHasMetaData)
         Some(newMeta)
       }
       case _ => None

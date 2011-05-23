@@ -19,7 +19,7 @@ import org.escapek.ekcmdb.core.domain.EKNode
 import org.escapek.ekcmdb.core.domain.MetaData
 
 abstract class MetaDataRepository {
-  def getMetaData(ekNode: EKNode): Set[MetaData]
-  def getMetaData(ekNode: EKNode, name: String): Option[MetaData]
+  def findMetaData(ekNode: EKNode): Set[MetaData]
+  def findMetaData(ekNode: EKNode, name: String): Option[MetaData]
   def addMetaData(ekNode: EKNode, name: String, value: Any): Option[MetaData]
 }
