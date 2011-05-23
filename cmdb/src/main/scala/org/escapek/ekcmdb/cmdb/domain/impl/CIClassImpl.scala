@@ -18,14 +18,15 @@ package org.escapek.ekcmdb.cmdb.domain.impl
 import org.escapek.ekcmdb.core.domain.impl.EKNodeImpl
 import org.escapek.ekcmdb.cmdb.domain.{Domain, CIClass}
 import org.neo4j.graphdb.{ Node, Direction }
+import org.escapek.ekcmdb.cmdb.repository.impl.Relationships
 
 class CIClassImpl(override val aNode:Node) extends EKNodeImpl(aNode) with NamedNodeImpl with CIClass {
   override def nodeType = "CIClass"
     
   def domain = {
-    val ciClassNode = 
-      baseNode.getSingleRelationship(DomainImpl.Rel_ContainsCIClass, Direction.INCOMING).getEndNode 
-    new DomainImpl(ciClassNode)
+    val domainNode = 
+      baseNode.getSingleRelationship(Relationships.Rel_DomainContainsCIClass, Direction.INCOMING).getEndNode 
+    new DomainImpl(domainNode)
   }
   
   def properties = {
@@ -38,8 +39,13 @@ class CIClassImpl(override val aNode:Node) extends EKNodeImpl(aNode) with NamedN
   }
   
   def superClass: Option[CIClass] = {
-    //TODO
-    None
+    val superClassNode = 
+      baseNode.getSingleRelationship(
+        Relationships.Rel_CIClassHasSuperClass, 
+        Direction.INCOMING).getEndNode 
+    superClassNode match {
+      case n : Node => Some(new CIClassImpl(n))
+      case _ => None
+    }
   }
-
 }

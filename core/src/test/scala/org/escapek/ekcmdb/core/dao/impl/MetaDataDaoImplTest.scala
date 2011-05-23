@@ -13,8 +13,9 @@ class MetaDataDaoImplTest {
   class testNode(override val aNode:Node) extends EKNodeImpl(aNode) {
     override def nodeType = "testNode"
   }
-  object testNodeDao extends EKNodeRepositoryImpl[testNode](graphDB)( (node : Node) => new testNode(node) ) {
-    def createNewInstance() = { new testNode(graphDB.createNode) }
+  object testNodeDao extends EKNodeRepositoryImpl[testNode](graphDB) {
+    override def createNewInstance() = { new testNode(graphDB.createNode) }
+    override def load(node:Node) = {new testNode(node)}
   }
   
   var graphDB : GraphDatabaseService = _

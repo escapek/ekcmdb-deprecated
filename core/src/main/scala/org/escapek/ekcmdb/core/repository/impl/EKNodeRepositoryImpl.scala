@@ -20,10 +20,10 @@ import org.neo4j.graphdb.{ NotFoundException, Node, GraphDatabaseService, Direct
 import org.escapek.ekcmdb.core.repository.EKNodeRepository
 import scala.collection.JavaConversions._
 
-abstract class EKNodeRepositoryImpl[T <: EKNode](val db: GraphDatabaseService)(implicit val node2T : Node => T)
+abstract class EKNodeRepositoryImpl[T <: EKNode](val db: GraphDatabaseService)
   extends EKNodeRepository[T] {
 
-  //implicit protected def node2T(node: Node): T
+  implicit def load(node: Node): T
 
   override def getById(id: Long): Option[T] = {
     try {

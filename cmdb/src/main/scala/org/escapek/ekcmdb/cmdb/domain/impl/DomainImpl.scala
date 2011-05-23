@@ -19,19 +19,19 @@ import org.escapek.ekcmdb.core.domain.impl.EKNodeImpl
 import org.escapek.ekcmdb.cmdb.domain.{ Domain, CIClass }
 import org.neo4j.graphdb.{ Node, Direction }
 import scala.collection.JavaConversions._
+import org.neo4j.graphdb.DynamicRelationshipType.withName
+import org.escapek.ekcmdb.cmdb.repository.impl.Relationships
 
 class DomainImpl(override val aNode: Node) extends EKNodeImpl(aNode) with NamedNodeImpl with Domain {
   override def nodeType = "Domain"
   
   def content = {
     val iterator = 
-      baseNode.getRelationships(DomainImpl.Rel_ContainsCIClass, Direction.OUTGOING).iterator
+      baseNode.getRelationships(Relationships.Rel_DomainContainsCIClass, Direction.OUTGOING).iterator
     Set.empty[CIClass] ++ iterator.map( r => new CIClassImpl(r.getEndNode()) )
   }
 }
 
-import org.neo4j.graphdb.DynamicRelationshipType.withName
+
 object DomainImpl {
-  //Relationships
-  val Rel_ContainsCIClass = withName("CONTAINS_CI_CLASS")  
 }

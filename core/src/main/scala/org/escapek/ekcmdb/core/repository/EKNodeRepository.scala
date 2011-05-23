@@ -24,7 +24,8 @@ import org.escapek.ekcmdb.core.domain.EKNode
  * Time: 16:48
  */
 
-abstract class EKNodeRepository[T <: EKNode]
+trait EKNodeRepository[T <: EKNode]
 {
   def getById(id: Long) : Option[T]
+  def createNewInstance() : T
 }

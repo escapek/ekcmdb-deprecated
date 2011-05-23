@@ -22,4 +22,5 @@ abstract class MetaDataRepository {
   def findMetaData(ekNode: EKNode): Set[MetaData]
   def findMetaData(ekNode: EKNode, name: String): Option[MetaData]
   def addMetaData(ekNode: EKNode, name: String, value: Any): Option[MetaData]
+  def createNewInstance() : MetaData
 }

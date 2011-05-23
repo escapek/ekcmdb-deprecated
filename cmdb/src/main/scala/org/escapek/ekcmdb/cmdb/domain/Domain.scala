@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 package org.escapek.ekcmdb.cmdb.domain
+import org.escapek.ekcmdb.core.domain.EKNode
 
-trait Domain extends NamedNode
+trait Domain extends EKNode with NamedNode
 {
 	def content : Set[CIClass]
 }

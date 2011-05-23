@@ -50,6 +50,10 @@ class MetaDataRepositoryImpl(val db: GraphDatabaseService) extends MetaDataRepos
       case _ => None
     }
   }
+  
+  override def createNewInstance() : MetaData = {
+    new MetaDataImpl(db.createNode)
+  }
 }
 
 object MetaDataDaoImpl {
