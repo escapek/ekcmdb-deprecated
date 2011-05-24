@@ -17,5 +17,5 @@ package org.escapek.ekcmdb.core.domain
 
 trait MetaData {
   def key : String
-  def value : Any
+  def value : Option[Any]
 }

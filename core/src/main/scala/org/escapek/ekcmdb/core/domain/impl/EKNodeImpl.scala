@@ -28,9 +28,8 @@ abstract class EKNodeImpl(val aNode: Node) extends EKNode with Neo4JNodeContaine
   override def baseNode = aNode
 
   //Require given node is not already used by another object
-  require( !baseNode.hasProperty(EKNodeImpl.Prop_nodeType), 
-      "Neo4J node used for mapping is already assigned to another object" )
-  baseNode.setProperty(EKNodeImpl.Prop_nodeType, nodeType)
+  if( !baseNode.hasProperty(EKNodeImpl.Prop_nodeType) ) 
+    baseNode.setProperty(EKNodeImpl.Prop_nodeType, nodeType)
 
   def id = {
     baseNode.getId
