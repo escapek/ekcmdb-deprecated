@@ -7,6 +7,7 @@ import org.neo4j.graphdb.Node
 import org.escapek.ekcmdb.cmdb.domain.impl.DomainImpl
 
 class DomainRepositoryImpl(override val db: GraphDatabaseService) extends EKNodeRepositoryImpl[Domain](db) with DomainRepository {
+  val rootNode = db.getReferenceNode
   override def load(node: Node): Domain = { new DomainImpl(node) } 
   
   override def createNewInstance() : Domain = {
@@ -18,4 +19,8 @@ class DomainRepositoryImpl(override val db: GraphDatabaseService) extends EKNode
     domain.name = domainName
     domain
   }
+  
+    def findByName(name: String) : Option[Domain] = {
+      None
+    }
 }
