@@ -10,7 +10,7 @@ import org.escapek.ekcmdb.core.domain.impl.EKNodeImpl
 
 class MetaDataDaoImplTest {
 
-  class testNode(override val aNode:Node) extends EKNodeImpl(aNode) {
+  class testNode(override val baseNode:Node) extends EKNodeImpl(baseNode) {
     override def nodeType = "testNode"
   }
   object testNodeDao extends EKNodeRepositoryImpl[testNode](graphDB) {
@@ -67,7 +67,7 @@ class MetaDataDaoImplTest {
   }
   
   @Test
-  def testAddAndGetMetaData2() = {
+  def testAddAndFindAllMetaData() = {
     val metaDataDao = new MetaDataRepositoryImpl(graphDB)
     
     //Create a node with some metadata

@@ -8,7 +8,7 @@ import org.escapek.ekcmdb.core.domain.impl.EKNodeImpl
 
 class EKNodeRepositoryImplTest {
 
-  class testNode(override val aNode:Node) extends EKNodeImpl(aNode) {
+  class testNode(override val baseNode:Node) extends EKNodeImpl(baseNode) {
     override def nodeType = "testNode"
     
     def someProperty = {

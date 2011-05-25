@@ -18,6 +18,8 @@ package org.escapek.ekcmdb.core.domain.impl
 import org.escapek.ekcmdb.core.tools.Neo4JWrapper
 import org.neo4j.graphdb.Node
 
-trait Neo4JNodeContainer extends Neo4JWrapper {
-  def baseNode : Node
+abstract class Neo4JNodeContainer(val baseNode: Node) extends Neo4JWrapper {
+  //Require given node is not null for property mapping
+  require(baseNode != null, "Neo4J node used for mapping can not be null")
+
 }
