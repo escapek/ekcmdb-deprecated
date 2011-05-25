@@ -19,11 +19,8 @@ import org.escapek.ekcmdb.core.domain.MetaData
 import org.neo4j.graphdb.{Direction, Node}
 import org.escapek.ekcmdb.core.tools.Neo4JWrapper
 
-class MetaDataImpl(val aNode:Node) extends Neo4JNodeContainer(aNode) with MetaData with Neo4JWrapper
+class MetaDataImpl(override val baseNode:Node) extends Neo4JNodeContainer(baseNode) with MetaData with Neo4JWrapper
 {
-  //Require given node is not null for property mapping
-  require(aNode != null, "Neo4J node used for mapping can not be null")
-
   if( !baseNode.hasProperty(MetaDataImpl.Prop_nodeType) ) 
     baseNode.setProperty(MetaDataImpl.Prop_nodeType, "MetaData")
 
