@@ -174,6 +174,7 @@
 		<module>services-sample</module>
 		<module>features</module>
 		<module>federation</module>
+		<module>framework</module>
 	</modules>
 
 </project>
